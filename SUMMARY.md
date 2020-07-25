@@ -1,18 +1,20 @@
 # Table of contents
 
-* [Contents](README.md)
-* [Hack the Box](road-to-oscp-through-htb.md)
+* [Hack the Box](README.md)
 
-## Basic Actions
+## Linux
 
-* [Transfering files](basic-actions/transfering-files.md)
-* [Port forwarding](basic-actions/port-forwarding.md)
+* [Shells](linux/shells.md)
+* [Transfering files](linux/transfering-files.md)
+* [Port forwarding](linux/port-forwarding.md)
+* [Privilege escalation](linux/privilege-escalation.md)
+* [Privesc.old](linux/privesc-old.md)
 
-## Reverse shells
+## Windows
 
-* [Reverse shells](reverse-shells/reverse-shells.md)
-* [Windows code exec to shell](reverse-shells/windows-code-exec-to-shell.md)
-* [Linux code exec to shell](reverse-shells/linux-code-exec-to-shell.md)
+* [Shells](windows/shells.md)
+* [Transfering files](windows/transfering-files.md)
+* [Privilege escalation](windows/privilege-escalation.md)
 
 ## Ports
 
@@ -32,12 +34,6 @@
 * [2049 - NFS](ports/2049-nfs.md)
 * [3306 - MySQL](ports/3306-mysql.md)
 * [5985 - PS remoting](ports/5985-ps-remoting.md)
-
-## Privilege Escalation
-
-* [Windows](privilege-escalation/windows-1.md)
-* [Linux](privilege-escalation/linux-1.md)
-* [Linux](privilege-escalation/linux.md)
 
 ## Password Attacks
 
