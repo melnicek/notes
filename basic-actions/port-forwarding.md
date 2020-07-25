@@ -1,14 +1,5 @@
 # Port forwarding
 
-### Metasploit
-
-```text
-use post/windows/manage/autoroute
-set SESSION <session>
-set SUBNET <subnet>
-run
-```
-
 ### rinetd
 
 ```text
@@ -19,7 +10,7 @@ sudo service rinetd restart
 ss -antp
 ```
 
-### SSH tunneling
+### SSH
 
 ```text
 # run on target machine
