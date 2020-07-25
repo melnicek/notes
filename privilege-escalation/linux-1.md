@@ -46,7 +46,6 @@ https://gtfobins.github.io/
 ```text
 https://github.com/rebootuser/LinEnum
 https://github.com/sleventyeleven/linuxprivchecker
-https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite
 ```
 
 ### If everything else fails

@@ -6,7 +6,7 @@
 ## Basic Actions
 
 * [Transfering files](basic-actions/transfering-files.md)
-* [Port forwarding / tunneling](basic-actions/port-forwarding-tunneling.md)
+* [Port forwarding](basic-actions/port-forwarding.md)
 
 ## Reverse shells
 
@@ -37,6 +37,7 @@
 
 * [Windows](privilege-escalation/windows-1.md)
 * [Linux](privilege-escalation/linux-1.md)
+* [Linux](privilege-escalation/linux.md)
 
 ## Password Attacks
 
