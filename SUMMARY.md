@@ -37,9 +37,9 @@
 
 ## Password Attacks
 
-* [Offline hash cracking](password-attacks/offline-cracking-of-hashes.md)
+* [Cracking hashes](password-attacks/cracking-hashes-1.md)
 * [Online password attacks](password-attacks/cracking-hashes.md)
-* [Generating wordlists](password-attacks/generating-wordlists.md)
+* [Generating custom wordlists](password-attacks/generating-custom-wordlists.md)
 
 ## Wifi Attacks
 
