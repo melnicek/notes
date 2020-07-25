@@ -19,7 +19,7 @@
 * [Port Scanning](ports/port-scanning.md)
 * [21 - FTP](ports/21-ftp.md)
 * [25 - SMTP](ports/25-smtp.md)
-* [53 - DNS](ports/dns.md)
+* [53 - DNS](ports/53-dns.md)
 * [80 - HTTP](ports/80-http.md)
 * [88 - Kerberos](ports/88-kerberos.md)
 * [111 - NFS](ports/111-nfs.md)
