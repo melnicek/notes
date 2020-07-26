@@ -8,7 +8,6 @@
 * [Transfering files](linux/transfering-files.md)
 * [Port forwarding](linux/port-forwarding.md)
 * [Privilege escalation](linux/privilege-escalation.md)
-* [Privesc.old](linux/privesc-old.md)
 
 ## Windows
 
