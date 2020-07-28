@@ -7,7 +7,9 @@
 * [Shells](linux/shells.md)
 * [Transfering files](linux/transfering-files.md)
 * [Port forwarding](linux/port-forwarding.md)
-* [Privilege escalation](linux/privilege-escalation.md)
+* [Privilege escalation](linux/privilege-escalation/README.md)
+  * [Manual enumeration](linux/privilege-escalation/manual-enumeration.md)
+  * [Automated tools](linux/privilege-escalation/automated-tools.md)
 
 ## Windows
 
