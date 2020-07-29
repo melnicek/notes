@@ -12,6 +12,7 @@
   * [Automated tools](linux/privilege-escalation/automated-tools.md)
   * [Spawning root shell](linux/privilege-escalation/spawning-root-shell.md)
   * [Techniques](linux/privilege-escalation/techniques.md)
+  * [Methodology](linux/privilege-escalation/methodology.md)
 
 ## Windows
 
