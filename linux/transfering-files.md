@@ -6,6 +6,8 @@ description: source -> destination
 
 ### Netcat
 
+Netcat is the easiest way to transfer files between Linux systems.
+
 ```text
 # source
 nc -nv <ip> <port> < <file>
@@ -15,6 +17,8 @@ nc -lvnp <port> > <file>
 ```
 
 ### Socat
+
+You can also use socat if you want to use encrypted tunnel.
 
 ```text
 # source

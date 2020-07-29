@@ -2,12 +2,17 @@
 
 ### Identifying hashes
 
+List of example hashes by hashcat: [https://hashcat.net/wiki/doku.php?id=example\_hashes](https://hashcat.net/wiki/doku.php?id=example_hashes)
+
+Hash identifier by zulln: [https://hashid.zulln.se/](https://hashid.zulln.se/)
+
+Also this nice built in tool in kali:
+
 ```text
-https://hashid.zulln.se/
-hashid
+hashid <hash>
 ```
 
-### Cracking hashes online
+### Cracking non-salted hashes online
 
 ```text
 https://crackstation.net/
@@ -15,7 +20,7 @@ https://www.hashes.org/search.php
 https://hashes.com/en/decrypt/hash
 ```
 
-### Cracking id\_rsa
+### Cracking password of id\_rsa
 
 ```text
 /usr/share/john/ssh2john.py id_rsa > id_rsa.hashes
