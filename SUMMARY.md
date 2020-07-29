@@ -10,6 +10,8 @@
 * [Privilege escalation](linux/privilege-escalation/README.md)
   * [Manual enumeration](linux/privilege-escalation/manual-enumeration.md)
   * [Automated tools](linux/privilege-escalation/automated-tools.md)
+  * [Spawning root shell](linux/privilege-escalation/spawning-root-shell.md)
+  * [Techniques](linux/privilege-escalation/techniques.md)
 
 ## Windows
 
