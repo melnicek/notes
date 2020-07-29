@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Hack the Box](README.md)
+* [Contents](README.md)
 
 ## Linux
 
@@ -66,4 +66,5 @@
 * [Encryption](misc/encryption.md)
 * [Packet analyzers](misc/packet-analyzers.md)
 * [Interface bridging](misc/interface-bridging.md)
+* [Hack the Box](misc/hack-the-box.md)
 
