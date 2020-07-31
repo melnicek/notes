@@ -18,7 +18,10 @@
 
 * [Shells](windows/shells.md)
 * [Transfering files](windows/transfering-files.md)
-* [Privilege escalation](windows/privilege-escalation.md)
+* [Privilege escalation](windows/privilege-escalation/README.md)
+  * [Manual enumeration TODO](windows/privilege-escalation/manual-enumeration-todo.md)
+  * [Automated tools TODO](windows/privilege-escalation/automated-tools-todo.md)
+  * [Techniques TODO](windows/privilege-escalation/techniques-todo.md)
 
 ## Ports
 
