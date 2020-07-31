@@ -33,6 +33,7 @@ wget "https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/lin
 chmod 700 les.sh
 wget "https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py" -O linuxprivchecker.py
 chmod 700 linuxprivchecker.py
+ifconfig
 echo "sudo python3 -m http.server 80"
 ```
 {% endcode %}
