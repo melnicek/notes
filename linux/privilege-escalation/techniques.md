@@ -433,3 +433,9 @@ Finally, run it from target machine.
 
 ## Docker
 
+If you are member of a `docker` group, you can easily escalate to root.
+
+```text
+docker run -v /:/tmp -i -t bash bash
+```
+
