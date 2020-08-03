@@ -56,3 +56,7 @@ john zip.hashes
 john rar.hashes
 ```
 
+```text
+fcrackzip -v -u -D -p wordlist.txt file.zip
+```
+
