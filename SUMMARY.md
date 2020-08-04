@@ -52,7 +52,7 @@
 
 ---
 
-* [Buffer overflows](buffer-overflows-1.md)
+* [Methodology](methodology.md)
 
 ## Wifi Attacks
 
