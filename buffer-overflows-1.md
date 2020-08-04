@@ -12,7 +12,7 @@ generic_send_tcp
 
 ### Sockets
 
-This is most basic way of fuzzing.
+This is the most basic way of fuzzing.
 
 ```python
 #!/usr/bin/env python3
@@ -38,7 +38,7 @@ while True:
 
 ### Boofuzz
 
-We can use boofuzz. This python module will do a lot of work for us and also create a database of results.
+Also we can use boofuzz. This python module will do a lot of work for us and also create a database of results.
 
 ```python
 #!/usr/bin/env python3
