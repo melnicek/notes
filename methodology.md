@@ -2,15 +2,32 @@
 
 ## Spiking
 
-I'm not so sure what's the difference between spiking and fuzzing. But still included it here for completeness sake.
+Also we can use boofuzz. This python module will do a lot of work for us and also create a database of results.
+
+```python
+#!/usr/bin/env python3
+from boofuzz import *
+
+RHOST = "127.0.0.1"
+RPORT = 9999
+
+s = Session(target=Target(connection=SocketConnection(RHOST,RPORT,proto="tcp")))
+
+s_initialize("FUZZER")
+
+s_string("change_me", fuzzable=False)
+s_delim(" ", fuzzable=False)
+s_string("fuzzme")
+
+s.connect(s_get("FUZZER"))
+s.fuzz()
+```
 
 ```text
 generic_send_tcp
 ```
 
 ## Fuzzing
-
-### Sockets
 
 This is the most basic way of fuzzing.
 
@@ -33,29 +50,6 @@ while True:
         buffer = buffer + "1"*64
     except:
         print("Crashed at buffer length of: " + str(len(buffer)))
-```
-
-### Boofuzz
-
-Also we can use boofuzz. This python module will do a lot of work for us and also create a database of results.
-
-```python
-#!/usr/bin/env python3
-from boofuzz import *
-
-RHOST = "127.0.0.1"
-RPORT = 9999
-
-s = Session(target=Target(connection=SocketConnection(RHOST,RPORT,proto="tcp")))
-
-s_initialize("FUZZER")
-
-s_string("change_me", fuzzable=False)
-s_delim(" ", fuzzable=False)
-s_string("fuzzme")
-
-s.connect(s_get("FUZZER"))
-s.fuzz()
 ```
 
 ## Finding offset of EIP
