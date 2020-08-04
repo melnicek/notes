@@ -48,6 +48,12 @@
 * [Online password attacks](password-attacks/cracking-hashes.md)
 * [Custom wordlists](password-attacks/custom-wordlists.md)
 
+## Buffer Overflows
+
+---
+
+* [Buffer overflows](buffer-overflows-1.md)
+
 ## Wifi Attacks
 
 * [Wireless scanning](wifi-attacks/wireless-scanning.md)
@@ -61,7 +67,6 @@
 
 * [Networking](misc/networking.md)
 * [Shell Kung Fu](misc/shell-kung-fu.md)
-* [Buffer overflows - TODO](misc/buffer-overflows-todo.md)
 * [Antivirus evasion](misc/antivirus-evasion.md)
 * [Active Directory](misc/active-directory.md)
 * [Domain/Subdomain recon](misc/basics.md)
