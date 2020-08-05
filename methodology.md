@@ -1,6 +1,6 @@
 # Methodology
 
-## Spiking
+## Spiking/Fuzzing
 
 Also we can use boofuzz. This python module will do a lot of work for us and also create a database of results.
 
@@ -27,9 +27,9 @@ s.fuzz()
 generic_send_tcp
 ```
 
-## Fuzzing
+## Finding offset of EIP
 
-This is the most basic way of fuzzing.
+This script can five us general idea.
 
 ```python
 #!/usr/bin/env python3
@@ -52,9 +52,7 @@ while True:
         print("Crashed at buffer length of: " + str(len(buffer)))
 ```
 
-## Finding offset of EIP
-
-Best way to find EIP is to send a non-repeating pattern of characters.
+Better way to find EIP is to send a non-repeating pattern of characters.
 
 ```python
 #!/usr/bin/env python3
