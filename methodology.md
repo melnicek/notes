@@ -14,7 +14,6 @@ RPORT = 9999
 s = Session(target=Target(connection=SocketConnection(RHOST,RPORT,proto="tcp")))
 
 s_initialize("FUZZER")
-
 s_string("change_me", fuzzable=False)
 s_delim(" ", fuzzable=False)
 s_string("fuzzme")
