@@ -42,17 +42,15 @@
 * [3306 - MySQL](ports/3306-mysql.md)
 * [5985 - PS remoting](ports/5985-ps-remoting.md)
 
+## Buffer overflows
+
+* [Methodology](buffer-overflows/methodology.md)
+
 ## Password Attacks
 
 * [Cracking hashes](password-attacks/cracking-hashes-1.md)
 * [Online password attacks](password-attacks/cracking-hashes.md)
 * [Custom wordlists](password-attacks/custom-wordlists.md)
-
-## Buffer Overflows
-
----
-
-* [Methodology](bfo.md)
 
 ## Wifi Attacks
 
