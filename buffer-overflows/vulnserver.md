@@ -1,6 +1,6 @@
 # Vulnserver
 
-## Functions ranked by difficulty:
+## Vulnserver functions ranked by difficulty:
 
 1. TRUN
 2. GMON
