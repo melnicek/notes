@@ -52,7 +52,7 @@
 
 ---
 
-* [Methodology](methodology.md)
+* [Methodology](bfo.md)
 
 ## Wifi Attacks
 
