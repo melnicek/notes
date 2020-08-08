@@ -45,6 +45,7 @@
 ## Buffer overflows
 
 * [Methodology](buffer-overflows/methodology.md)
+* [Other people's guides](buffer-overflows/other-peoples-guides.md)
 * [Vulnserver](buffer-overflows/vulnserver.md)
 
 ## Password Attacks
