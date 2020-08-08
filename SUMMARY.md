@@ -44,7 +44,7 @@
 
 ## Buffer overflows
 
-* [Methodology](buffer-overflows/methodology.md)
+* [My methodology](buffer-overflows/my-methodology.md)
 * [Other people's guides](buffer-overflows/other-peoples-guides.md)
 * [Vulnserver](buffer-overflows/vulnserver.md)
 
