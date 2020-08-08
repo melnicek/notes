@@ -102,7 +102,7 @@ Then try to find position of `jmp esp` instruction\(`FF E4`\)
 
 ```bash
 !mona jmp -r esp
-!mona jmp -r esp -cpb "\x00"
+!mona jmp -r esp -cpb "\x00\x23\x3c\x83\xba"
 !mona find -s "\xff\xe4" -m <unsecure_module>
 ```
 
