@@ -11,7 +11,6 @@ PS> Get-ADUser
 PS> [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
 ```
 
-{% code title="ADEnum.ps1" %}
 ```text
 $dObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
 $PDC = ($dObj.PdcRoleOwner).Name
@@ -39,7 +38,6 @@ Foreach($Result in $Results)
     Write-Host "---------------------------------------"
 }
 ```
-{% endcode %}
 
 ```text
 Import-Module .\PowerView.ps1
