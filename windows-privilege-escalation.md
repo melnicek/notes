@@ -1,3 +1,5 @@
+[Contents](../)
+
 # Privilege escalation on windows
 
 Our goal is to get `Administrator` or `System` shell.
