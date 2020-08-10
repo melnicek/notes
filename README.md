@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Contents](README.md)
+* [Windows privilege escalation](windows-privilege-escalation.md)
 
 ## Linux
 
