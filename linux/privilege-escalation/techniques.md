@@ -74,8 +74,6 @@ Things you can do:
 1. If a file is readable, you can try to crack root hash.
 2. If a file is writable, you can replace original hash.
 
-{% page-ref page="../../password-attacks/cracking-hashes-1.md" %}
-
 You can generate new sha-512 \("$6$"\) hash of a password with this command.
 
 ```text
