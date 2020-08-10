@@ -1,10 +1,10 @@
 # Automated tools
 
-#### [https://github.com/rebootuser/LinEnum \(linenum.sh\)](https://github.com/rebootuser/LinEnum)
+### [https://github.com/rebootuser/LinEnum \(linenum.sh\)](https://github.com/rebootuser/LinEnum)
 
-#### [https://github.com/diego-treitos/linux-smart-enumeration \(lse.sh\)](https://github.com/diego-treitos/linux-smart-enumeration)
+### [https://github.com/diego-treitos/linux-smart-enumeration \(lse.sh\)](https://github.com/diego-treitos/linux-smart-enumeration)
 
-#### [https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite \(linpeas.sh\)](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
+### [https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite \(linpeas.sh\)](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
 
 [https://github.com/Anon-Exploiter/SUID3NUM \(suid3num.py\)](https://github.com/Anon-Exploiter/SUID3NUM)
 
@@ -18,7 +18,6 @@
 
 ## First 6 scripts can be downloaded by using this bash script
 
-{% code title="yz-privesc-scripts.sh" %}
 ```bash
 #!/bin/bash
 wget "https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh" -O linenum.sh
@@ -36,5 +35,3 @@ chmod 700 linuxprivchecker.py
 ifconfig
 echo "sudo python3 -m http.server 80"
 ```
-{% endcode %}
-
