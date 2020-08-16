@@ -1,7 +1,10 @@
-# Table of contents
+[./readme.md](README.md)
 
-* [Contents](README.md)
-* [Windows privilege escalation](windows-privilege-escalation.md)
+[./windows-privilege-escalation.md](windows-privilege-escalation.md)
+
+---
+
+## Old Stuff (will slowly)
 
 ## Linux
 
