@@ -1,31 +1,16 @@
-[./readme.md](README.md)
+## [./readme.md](README.md)
 
-[./windows-privilege-escalation.md](windows-privilege-escalation.md)
+## [./linux.md](linux.md)
+
+## [./linux-privilege-escalation.md](linux-privilege-escalation.md)
+
+## [./windows.md](windows.md)
+
+## [./windows-privilege-escalation.md](windows-privilege-escalation.md)
 
 ---
 
-## Old Stuff (will slowly)
-
-## Linux
-
-* [Shells](linux/shells.md)
-* [Transfering files](linux/transfering-files.md)
-* [Port forwarding](linux/port-forwarding.md)
-* [Privilege escalation](linux/privilege-escalation/README.md)
-  * [Manual enumeration](linux/privilege-escalation/manual-enumeration.md)
-  * [Automated tools](linux/privilege-escalation/automated-tools.md)
-  * [Spawning root shell](linux/privilege-escalation/spawning-root-shell.md)
-  * [Techniques](linux/privilege-escalation/techniques.md)
-  * [Methodology](linux/privilege-escalation/methodology.md)
-
-## Windows
-
-* [Shells](windows/shells.md)
-* [Transfering files](windows/transfering-files.md)
-* [Privilege escalation](windows/privilege-escalation/README.md)
-  * [Manual enumeration TODO](windows/privilege-escalation/manual-enumeration-todo.md)
-  * [Automated tools TODO](windows/privilege-escalation/automated-tools-todo.md)
-  * [Techniques TODO](windows/privilege-escalation/techniques-todo.md)
+## Old Stuff (most likely a broken links)
 
 ## Ports
 
