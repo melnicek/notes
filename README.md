@@ -6,6 +6,8 @@
 
 ## [./windows.md](windows.md)
 
+## [./windows-reverse-shells.md](windows-reverse-shells.md)
+
 ## [./windows-privilege-escalation.md](windows-privilege-escalation.md)
 
 ---
