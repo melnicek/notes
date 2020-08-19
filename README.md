@@ -10,6 +10,8 @@
 
 ## [./windows-privilege-escalation.md](windows-privilege-escalation.md)
 
+## [./active-directory.md](active-directory.md)
+
 ---
 
 ## Old Stuff (most likely a broken links)
