@@ -30,12 +30,9 @@ cd /opt/impacket/ && python3 ./setup.py install
 
 After that, Impacket should be correctly installed now and it should be ready to use!
 
+# Kerbrute
 
-# Kerberos
-
-## Kerbrute
-
-### Instalation
+## Instalation
 Clone the repository.
 
 ```
@@ -52,7 +49,7 @@ make all
 
 Your new binaries will be inside `dist` directory.
 
-### Usage
+## Usage
 
 Enumerating users:
 
@@ -60,11 +57,11 @@ Enumerating users:
 ./kerbrute_linux_386 userenum --dc <RHOST> -d <domain> <userlist> 
 ```
 
-## ASREPRoasting
+# ASREPRoasting
 
 After the enumeration of user accounts is finished, we can attempt to abuse a feature within Kerberos with an attack method called ASREPRoasting. ASReproasting occurs when a user account has the privilege "Does not require Pre-Authentication" set. This means that the account does not need to provide valid identification before requesting a Kerberos Ticket on the specified user account.
 
-### Exploitation
+## Exploitation
 
 Impacket has a tool called "GetNPUsers.py" (located in Impacket/Examples/GetNPUsers.py) that will allow us to query ASReproastable accounts from the Key Distribution Center. The only thing that's necessary to query accounts is a valid set of usernames which we enumerated previously via Kerbrute.
 

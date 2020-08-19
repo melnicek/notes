@@ -1,5 +1,3 @@
-## [./readme.md](README.md)
-
 ## [./linux.md](linux.md)
 
 ## [./linux-privilege-escalation.md](linux-privilege-escalation.md)
