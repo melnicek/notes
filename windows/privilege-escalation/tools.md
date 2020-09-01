@@ -23,13 +23,9 @@ Run specific check categories:
 ```
 
 
-## PowerUp & SharpUp
+## [PowerUp](https://raw.githubusercontent.com/PowerShellEmpire/PowerTools/master/PowerUp/PowerUp.ps1) & [SharpUp](https://github.com/GhostPack/SharpUp)
 
 PowerUp & SharpUp are very similar tools that hunt for specific privilege escalation misconfigurations.
-
-PowerUp: https://raw.githubusercontent.com/PowerShellEmpire/PowerTools/master/PowerUp/PowerUp.ps1
-
-SharpUp: https://github.com/GhostPack/SharpUp
 
 Pre-Compiled SharpUp: https://github.com/r3motecontrol/GhostpackCompiledBinaries/blob/master/SharpUp.exe
 
