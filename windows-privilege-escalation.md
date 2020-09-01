@@ -73,7 +73,11 @@ netsh firewall show config
 
 ## winPEAS
 
-https://github.com/carlospolop/privilege-escalationawesome-scripts-suite/tree/master/winPEAS
+https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS
+
+Compiled releases can be found here
+
+https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases
 
 Before running, we need to add a registry key and then reopen the command prompt:
 
