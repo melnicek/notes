@@ -4,6 +4,10 @@
 
 Compiled releases can be found [here](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases)
 
+```
+wget https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/blob/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASany.exe?raw=true
+```
+
 Before running, we need to add a registry key and then reopen the command prompt:
 
 ```
