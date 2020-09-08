@@ -7,3 +7,7 @@
 ## [custom-wordlists.md](custom-wordlists.md)
 
 ## [wireless-attacks.md](wireless-attacks.md)
+
+## [cracking-hashes.md](cracking-hashes.md)
+
+## [online-password-attacks.md](online-password-attacks.md)
