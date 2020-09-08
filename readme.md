@@ -30,13 +30,13 @@
 
 ---
 
-### [Networking](networking.md)
-### [Shell Kung Fu](shell-kung-fu.md)
-### [Antivirus evasion](antivirus-evasion.md)
-### [Active Directory](active-directory.md)
-### [Domain/Subdomain recon](basics.md)
-### [Volatility](volatility.md)
-### [Encryption](encryption.md)
-### [Packet analyzers](packet-analyzers.md)
-### [Interface bridging](interface-bridging.md)
-### [Hack the Box](hack-the-box.md)
+### [networking.md](networking.md)
+### [shell-kung-fu.md](shell-kung-fu.md)
+### [antivirus-evasion.md](antivirus-evasion.md)
+### [active-directory.md](active-directory.md)
+### [basics.md](basics.md)
+### [volatility.md](volatility.md)
+### [encryption.md](encryption.md)
+### [packet-analyzers.md](packet-analyzers.md)
+### [interface-bridging.md](interface-bridging.md)
+### [hack-the-box.md](hack-the-box.md)
