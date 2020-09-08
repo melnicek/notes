@@ -2,11 +2,13 @@
 
 ## Default creds
 
-_anonymous : anonymous  
-anonymous : &lt;blank&gt;  
-ftp : ftp_
+```
+anonymous : anonymous
+anonymous : <blank>
+ftp : ftp
+```
 
-```text
+```
 ftp <target>
 > <username>
 > <password>
@@ -18,7 +20,7 @@ ftp <target>
 
 ## Download all files from FTP
 
-```bash
+```
 wget -m ftp://anonymous:anonymous@<target>
 wget -m --no-passive ftp://anonymous:anonymous@<target>
 ```

