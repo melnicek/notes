@@ -8,6 +8,8 @@ set -g allow-rename off
 set-window-option -g mode-keys vi
 ```
 
+Basic actions:
+
 ```
 tmux new -s <session_name>
 [ctrl+B] = prefix
