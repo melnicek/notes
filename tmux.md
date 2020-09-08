@@ -1,6 +1,6 @@
 # tmux
 
-[contents](readme.md)
+[back](readme.md)
 
 Config file is located in `~/tmux.conf`
 
