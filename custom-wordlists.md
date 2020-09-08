@@ -1,5 +1,7 @@
 # Custom wordlists
 
+[back](readme.md)
+
 ## Creating wordlist
 
 Cewl will generate wordlist from contents of a webpage.
