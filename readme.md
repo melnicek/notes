@@ -1,3 +1,3 @@
 # Contents
 
-## [tmux](tmux.html)
+## [tmux.md](tmux.md)
