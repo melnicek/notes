@@ -3,6 +3,7 @@
 ## Wireshark display filters
 
 ```
+ip.addr == 10.10.10.10
 ip.host == 10.10.10.10
 ip.src == 10.10.10.10
 ip.dst == 10.10.10.10
