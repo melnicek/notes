@@ -1,5 +1,12 @@
 # 3306 - MySQL
 
+## recon
+
+```
+auxiliary/scanner/mysql/mysql_schemadump
+auxiliary/scanner/mysql/mysql_hashdump
+```
+
 ### Dumping database
 
 ```text
