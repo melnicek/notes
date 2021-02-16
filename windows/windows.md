@@ -1,5 +1,3 @@
-## [../](../)
-
 # Shells
 
 ## Windows one-liners
