@@ -4,6 +4,7 @@
 
 ```
 icacls <folder/file>
+icacls <folder/file> /setowner <group>
 # I - permission inherited from the parent container
 # F - full access (full control)
 # M - Modify right/access
