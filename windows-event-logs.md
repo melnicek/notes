@@ -29,3 +29,17 @@ epl | export-log        Export a log.
 al | archive-log        Archive an exported log.
 cl | clear-log          Clear a log.
 ```
+
+## 3. Get-WinEvent
+
+instead of using the `Where-Object` cmdlet the `FilterHashtable` is used instead.
+
+```
+Get-WinEvent -FilterHashtable @{
+  Logname='Application'
+  ProviderName='Application Error'
+  Data='iexplore.exe'
+}
+```
+
+
