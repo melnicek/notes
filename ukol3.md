@@ -1,4 +1,4 @@
-lepsie sa to pozera tu: [https://github.com/melnicek/notes/blob/master/ukol3.md](https://github.com/melnicek/notes/blob/master/ukol3.md)
+markdown sa lepsie pozera na githube: [https://github.com/melnicek/notes/blob/master/ukol3.md](https://github.com/melnicek/notes/blob/master/ukol3.md)
 
 # Problém 1: Analýza Android API pro kryptografické operace
 
@@ -67,11 +67,19 @@ public class MainActivity extends AppCompatActivity {
 
 ### k čemu tato aplikace slouží 
 
+pouziva speciany cryptographic hardware aby zabranil chybnym alebo škodlivým komponentom narusit bezpecnost celeho systemu
+
 ### jak funguje.
+
+pomocou viacerych RNG vytvara kluce, v pripade menej ako 100% chybnych alebo škodlivých komponentov vysledny skuc je stale kryptograficky bezpecny
 
 ### Popište, jaké kryptografické operace aplikace používá
 
-### jaké kryptografické algoritmy jsou využity. 
+encrypt, decrypt, sign
+
+### jaké kryptografické algoritmy jsou využity.
+
+sha256
 
 ### Lokalizujte tyto operace ve zdrojovém kódu a diskutujte, jak dojde k jejich zavolání.
 
