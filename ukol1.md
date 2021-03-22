@@ -1,3 +1,5 @@
+markdown sa lepsie pozera na githube: [https://github.com/melnicek/notes/blob/master/ukol1.md](https://github.com/melnicek/notes/blob/master/ukol1.md)
+
 # Zadání první části – soubor uloha1.pcap
 
 ### 1. Jaká je IP adresa stanice, která byla infikována?
