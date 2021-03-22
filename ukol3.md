@@ -2,7 +2,7 @@
 
 Aplikacia obsahuje textfield `tMessage`, button `bSign`, a textview `tv0`
 
-[](./signing_app.png)
+![](./signing_app.png)
 
 ```java
 public class MainActivity extends AppCompatActivity {
