@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button bSign = (Button) findViewById(R.id.bSign);
 
+        // clicklistener na <Sign> button zavona funkciu sign()
         bSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // pri kazdom vytvoreni aktivity novy keypair, bolo by lepsie kontrolovat ci uz existuje, no som hladny
         try {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(
                     KeyProperties.KEY_ALGORITHM_EC, "AndroidKeyStore");
@@ -40,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
     }
     
     protected  void sign(){
-        TextView tv0 = (TextView) findViewById(R.id.tv0);
-        TextView tMessage = (TextView) findViewById(R.id.tMessage);
-        String sign_me = tMessage.getText().toString();
+        TextView tv0 = (TextView) findViewById(R.id.tv0); // base64 vysledok sa vlozi do `tv0`
+        EditText tMessage = (EditText) findViewById(R.id.tMessage); // text input
+        String sign_me = tMessage.getText().toString(); // message ktoru chceme signut
 
         try {
             KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
@@ -50,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
             
             Signature signature = Signature.getInstance("SHA256withECDSA");
             signature.initSign((PrivateKey) keyStore.getKey("key1", null));
-            signature.update(sign_me.getBytes("UTF-8")); // used getBytes to change string to byte[]
+            signature.update(sign_me.getBytes("UTF-8")); // getBytes(), zo stringu na byte[]
             
             tv0.setText(Base64.encodeToString(signature.sign(), Base64.DEFAULT));
+            
         } catch (Exception e) { // dalsi skaredy catch
             e.printStackTrace();
         }
@@ -62,5 +65,14 @@ public class MainActivity extends AppCompatActivity {
 
 # Problém 2: Analýza aplikace pro SMPC
 
+### k čemu tato aplikace slouží 
+
+### jak funguje.
+
+### Popište, jaké kryptografické operace aplikace používá
+
+### jaké kryptografické algoritmy jsou využity. 
+
+### Lokalizujte tyto operace ve zdrojovém kódu a diskutujte, jak dojde k jejich zavolání.
 
 # Problém 3: Rozhraní NFC
