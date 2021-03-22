@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // pri kazdom vytvoreni aktivity novy keypair, bolo by lepsie kontrolovat ci uz existuje, no som hladny
+        // pri kazdom vytvoreni aktivity novy keypair, bolo by lepsie kontrolovat ci uz existuje
         try {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(
                     KeyProperties.KEY_ALGORITHM_EC, "AndroidKeyStore");
