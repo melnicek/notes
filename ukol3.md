@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity {
 
 ### k čemu tato aplikace slouží 
 
-pouziva speciany cryptographic hardware aby zabranil chybnym alebo škodlivým komponentom narusit bezpecnost celeho systemu
+používa speciány cryptographic hardware(ktory zas používa of-the-shelf hardware), aby zabránil chybným alebo škodlivým komponentom narušiť bezpečnosť celého systému
 
 ### jak funguje.
 
-pomocou viacerych RNG vytvara kluce, v pripade menej ako 100% chybnych alebo škodlivých komponentov vysledny skuc je stale kryptograficky bezpecny
+pomocou viacerych RNG vytvara kluce, v pripade menej ako 100% chybnych alebo škodlivých komponentov vysledny kluc je stale kryptograficky bezpečný
 
 ### Popište, jaké kryptografické operace aplikace používá
 
@@ -83,4 +83,4 @@ sha256
 
 ### Lokalizujte tyto operace ve zdrojovém kódu a diskutujte, jak dojde k jejich zavolání.
 
-# Problém 3: Rozhraní NFC
+to uz je mimo mna, `MPCApplet/src/mpc/jcmathlib.java` a `MPCApplet/src/mpc/MPCCryptoOps.java` vyzera ako "maso" aplikacie
