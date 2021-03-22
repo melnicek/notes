@@ -1,3 +1,5 @@
+lepsie sa to pozera tu: [https://github.com/melnicek/notes/blob/master/ukol3.md](https://github.com/melnicek/notes/blob/master/ukol3.md)
+
 # Problém 1: Analýza Android API pro kryptografické operace
 
 Aplikacia obsahuje textfield `tMessage`, button `bSign`, a textview `tv0`
