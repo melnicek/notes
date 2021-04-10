@@ -22,8 +22,7 @@ apktool d <apk>
 
 ```
 https://sourceforge.net/projects/dex2jar/
-./d2j-dex2jar.sh ../example.apk/classes.dex -o output_file.jar
-./d2j-dex2jar.sh ../example.apk -o output_file.jar
+sudo bash d2j-dex2jar.sh ../base.apk -o ../base.jar
 ```
 
 ## Decompiling .jar file to java source code
