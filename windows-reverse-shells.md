@@ -1,5 +1,3 @@
-[../](../)
-
 # Create reverse shell from code execution on Windows machine
 
 First, you create reverse shell executable with msfvenom.
