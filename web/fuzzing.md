@@ -1,3 +1,9 @@
+# gobuster
+
+```
+gobuster dir -t 64 -w /usr/share/wordlists/directory-list-2.3-medium.txt -u <URL>
+```
+
 # ffuf
 
 ## installation
