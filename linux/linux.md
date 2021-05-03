@@ -1,5 +1,3 @@
-## [../](../)
-
 # Shells
 
 ## Stabilizing shell
