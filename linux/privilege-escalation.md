@@ -1,5 +1,3 @@
-## [../](../)
-
 # Spawning root shell
 
 ## Rootbash
