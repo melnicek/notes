@@ -1,6 +1,6 @@
 # basics of file inclusion
 
-(https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion)[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion]
+[https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion)
 
 php web shell
 
