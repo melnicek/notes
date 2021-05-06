@@ -4,8 +4,8 @@
 
 ```
 anonymous : anonymous
-anonymous : <blank>
 ftp : ftp
+ftpuser : ftpuser
 ```
 
 ```
