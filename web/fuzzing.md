@@ -6,14 +6,6 @@ gobuster dir -t 64 -w /usr/share/wordlists/directory-list-2.3-medium.txt -u <URL
 
 # ffuf
 
-## installation
-
-```
-yay -S ffuf-bin
-```
-
-## usage
-
 ```
 fuzzing
 ffuf -w <WORDLIST>:FUZZ -u http://<RHOST>:<RPORT>/FUZZ
