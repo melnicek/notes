@@ -11,3 +11,9 @@ ffuf -w /usr/share/wordlists/directory-list-2.3-small.txt:FUZZ -u http://RHOST:R
 ffuf -w /usr/share/wordlists/directory-list-2.3-big.txt:FUZZ -u http://RHOST:RPORT/FUZZ -recursion -recursion-depth 2 -t 128 -v
 ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://RHOST:RPORT/ -H 'Host: FUZZ.DOMAIN' -t 128 -v
 ```
+
+## pwn
+
+```
+python3 -c 'import sys;sys.stdout.buffer.write(b"i"*64 + b"\xff")'
+```
