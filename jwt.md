@@ -2,6 +2,8 @@
 
 ### Forging own JWT tokens
 
+[jwt.io](https://jwt.io/)
+
 pyjwt - python library for JWT
 
 ```python
