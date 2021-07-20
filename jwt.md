@@ -8,8 +8,10 @@ pyjwt - python library for JWT
 
 ```python
 import jwt
+import time
 
-jwt_token = jwt.encode({"username":"admin", "created":"0"}, key="SECRETKEY", algorithm="HS256")
+epoch = int(time.time())
+jwt_token = jwt.encode({"username":"admin", "created":epoch}, key="SECRETKEY", algorithm="HS256")
 jwt_token = jwt_token.decode("UTF-8")
 
 print(jwt_token)
@@ -21,7 +23,9 @@ Sometimes server does not check token signature. In that case, we can change tok
 
 ```python
 import jwt
+import time
 
+epoch = int(time.time())
 jwt_token = jwt.encode({"username":"admin", "created":"0"}, key=None, algorithm=None)
 jwt_token = jwt_token.decode("UTF-8")
 
