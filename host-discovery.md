@@ -9,7 +9,7 @@ nmap -sn RANGE
 ## Host discovery using fping
 
 ```bash
-fping -a -g RANGE
+fping -q -a -g RANGE
 ```
 
 ## Host discovery using reverse DNS lookup
