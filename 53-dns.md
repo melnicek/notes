@@ -1,19 +1,38 @@
 # 53 - DNS
 
+## Using dig
+
+```
+dig DOMAIN
+dig +nocmd DOMAIN ns +noall +answer
+dig +nocmd DOMAIN axfr +noall +answer @NAMESERVER
+```
+
+## Using nslookup
+
+```
+nslookup DOMAIN
+nslookup -query=ns DOMAIN
+nslookup -query=mx DOMAIN
+nslookup -query=any DOMAIN
+```
+
+or
+
 ```
 nslookup
-> server <rhost>
-> <rhost>
-> 127.0.0.1
-> 127.0.0.2
-> 127.0.0.5
+> server RHOST
+> set q=all
+> DOMAIN
+> exit
 ```
 
 ## Types of DNS records
 
 ```
 NS -> nameserver
-A ->  host record
+A -> IPv4 host record
+AAAA -> IPv6 host record
 MX -> mail exchange
 PTR -> pointer record for reverse lookups
 CNAME -> to create aliases for host records
@@ -24,14 +43,20 @@ TXT -> arbitrary data
 
 ```
 # reading DNS records
-host -t <type> <domain> [dns server] 
-for t in a aaaa caa cname mx ns srv txt ptr; do host -t $t <domain>; done | grep -v "has no"
+host -t TYPE DOMAIN
+for t in a aaaa caa cname mx ns srv txt ptr; do host -t $t DOMAIN; done | grep -v "has no"
 
 # domain transfer (try all DNS servers)
-host -l <domain> <dns server> 
+host -l DOMAIN DNSSERVER
 for s in $(host -t ns <domain> | cut -d " " -f 4); do host -l <domain> $s; done
 
 for h in $(cat hosts.txt); do host $h.<domain>; done | grep -v "not found"
+```
+
+## fierce
+
+```
+fierce -dns DOMAIN -dnsserver DNSSERVER
 ```
 
 ## dnsrecon
