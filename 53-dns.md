@@ -1,5 +1,17 @@
 # 53 - DNS
 
+## Types of DNS records
+
+```
+NS -> nameserver
+A -> IPv4 host record
+AAAA -> IPv6 host record
+MX -> mail exchange
+PTR -> pointer record for reverse lookups
+CNAME -> to create aliases for host records
+TXT -> arbitrary data
+```
+
 ## Using dig
 
 ```
@@ -25,18 +37,6 @@ nslookup
 > set q=all
 > DOMAIN
 > exit
-```
-
-## Types of DNS records
-
-```
-NS -> nameserver
-A -> IPv4 host record
-AAAA -> IPv6 host record
-MX -> mail exchange
-PTR -> pointer record for reverse lookups
-CNAME -> to create aliases for host records
-TXT -> arbitrary data
 ```
 
 ## host
