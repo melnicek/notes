@@ -17,5 +17,5 @@ fping -a -g RANGE
 ```bash
 nmap -sS -p53 RANGE
 nmap -sU -p53 RANGE
-# then use reverse dns lookup on newly found servers
+# then use reverse dns lookup on newly discovered servers
 ```
