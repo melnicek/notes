@@ -3,7 +3,7 @@
 ## Living of the land
 
 ```bash
-for i in {1..255}; do (ping -c 1 x.x.x.${i} | grep "bytes from" &); done
+for i in {1..254}; do (ping -c 1 x.x.x.${i} | grep "bytes from" &); done
 ```
 
 ```bash
