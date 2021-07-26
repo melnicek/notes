@@ -7,21 +7,23 @@
 
 ## proxychains
 
-config file: `/etc/proxychains.conf`
+Works by prepending the command `proxychains` before other commands.
 
-## ssh forward port forwarding
+Proxychains configuration file: `/etc/proxychains.conf` (but proxychains will look into working direcotry first)
+
+```
+cp /etc/proxychains.conf .
+```
+
+## SSH Tunnelling / Port Forwarding
 
 ```
 ssh -L <COMPROMISED_LPORT>:<TARGET_RHOST>:<TARGET_RPORT> user@<COMPROMISED_LHOST> -fN
 ```
 
-## ssh forward proxy
-
 ```
 ssh -D <COMPROMISED_LPORT> <USER>@<COMPROMISED_LHOST> -fN
 ```
-
-## ssh reverse connection
 
 ```
 # on your machine
