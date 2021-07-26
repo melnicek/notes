@@ -1,9 +1,9 @@
-# pivoting
+# Pivoting
 
-## 2 types
+## There are 2 types of pivoting
 
-1. Tunnelling/Proxying
-2. Port Forwarding
+1. Port Forwarding (only one port)
+2. Tunnelling and Proxying (all ports)
 
 ## proxychains
 
