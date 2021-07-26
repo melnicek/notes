@@ -3,35 +3,28 @@
 ## Generating usernames
 
 ```python
-#!/usr/bin/env python
 import sys
 
+if len(sys.argv) != 2:
+    print("Usage: {} NAMEFILE".format(sys.argv[0]))
+    sys.exit(0)
 
-def main(): 
-    if len(sys.argv) != 2:
-        print("Usage: {} NAMEFILE".format(sys.argv[0]))
-        sys.exit(0)
+for line in open(sys.argv[1]):
+    full_name = line.replace("\n", "")
+    tokens = full_name.split(" ")
+    fst = tokens[0]
+    lst = tokens[-1]
 
-    for line in open(sys.argv[1]):
-        full_name = line.replace("\n", "")
-        tokens = full_name.split(" ")
-        fst = tokens[0]
-        lst = tokens[-1]
-
-        print(fst)
-        print(lst)
-        print(fst[0] + lst)
-        print(fst[0] + "." + lst)
-        print(fst + lst)
-        print(fst + "." + lst)
-        print(lst + fst[0])
-        print(lst + "." + fst[0])
-        print(lst + fst)
-        print(lst + "." + fst)
-
-
-if __name__ == "__main__":
-    main()
+    print(fst)
+    print(lst)
+    print(fst[0] + lst)
+    print(fst[0] + "." + lst)
+    print(fst + lst)
+    print(fst + "." + lst)
+    print(lst + fst[0])
+    print(lst + "." + fst[0])
+    print(lst + fst)
+    print(lst + "." + fst)
 
 ```
 
