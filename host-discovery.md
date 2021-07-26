@@ -1,5 +1,15 @@
 # Host discovery
 
+## Living of the land
+
+```bash
+for i in {1..255}; do (ping -c 1 x.x.x.${i} | grep "bytes from" &); done
+```
+
+```bash
+for i in {1..65535}; do (echo > /dev/tcp/x.x.x.x/$i) >/dev/null 2>&1 && echo $i is open; done
+```
+
 ## Host discovery using nmap
 
 ```bash
