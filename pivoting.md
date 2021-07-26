@@ -5,7 +5,7 @@
 1. Port Forwarding (only one port)
 2. Tunnelling and Proxying (all ports)
 
-## proxychains
+## Proxychains
 
 Works by prepending the command `proxychains` before other commands.
 
