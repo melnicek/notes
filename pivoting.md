@@ -40,9 +40,9 @@ First we need to generate ssh key:
 ssh-keygen
 ```
 
-Add this line into `authorized_keys` following your generated key:
+Add this line into `authorized_keys`, then your generated key:
 ```bash
-command="echo 'This account can only be used for port forwarding'",no-agent-forwarding,no-x11-forwarding,no-pty
+command="echo 'This account can only be used for port forwarding'",no-agent-forwarding,no-x11-forwarding,no-pty YOUR_KEY
 ```
 
 Check is the SSH server is running on your machine:
