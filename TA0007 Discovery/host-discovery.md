@@ -4,6 +4,7 @@
 
 ```bash
 for i in {1..254}; do (ping -c 1 x.x.x.${i} | grep "bytes from" &); done; sleep 2
+for i in {1..254}; do (ping -c 1 x.x.x.${i} | grep "bytes from" &); done; sleep 2; arp -en | grep -v incomplete
 ```
 
 ```bash
