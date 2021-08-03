@@ -1,4 +1,4 @@
-# Forward SSH connection
+# SSH forward connection
 
 ## Port forwarding
 
