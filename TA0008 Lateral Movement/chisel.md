@@ -2,6 +2,30 @@
 
 [https://github.com/jpillora/chisel](https://github.com/jpillora/chisel)
 
+## Local Port Forward
+
+Proxy host:
+```
+./chisel server -p LPORT
+```
+
+Attacker host:
+```
+./chisel client RHOST:RPORT LPORT:RHOST:RPORT
+```
+
+## Remote Port Forward
+
+Attacker host:
+```
+./chisel server -p LPORT --reverse &
+```
+
+Proxy host:
+```
+./chisel client RHOST:RHOST R:LPORT:RHOST:RHOST &
+```
+
 ## Reverse SOCKS Proxy
 
 On attacker host:
@@ -29,27 +53,3 @@ On attacker host:
 ```
 
 Then use proxychains.
-
-## Remote Port Forward
-
-Attacker host:
-```
-./chisel server -p LPORT --reverse &
-```
-
-Proxy host:
-```
-./chisel client RHOST:RHOST R:LPORT:RHOST:RHOST &
-```
-
-## Local Port Forward
-
-Proxy host:
-```
-./chisel server -p LPORT
-```
-
-Attacker host:
-```
-./chisel client RHOST:RPORT LPORT:RHOST:RPORT
-```
