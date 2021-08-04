@@ -2,6 +2,9 @@
 
 [https://github.com/3ndG4me/socat/releases/tag/v1.7.3.3](https://github.com/3ndG4me/socat/releases/tag/v1.7.3.3)
 
+[linux](https://github.com/andrew-d/static-binaries/raw/master/binaries/linux/x86_64/socat)
+[windows](https://sourceforge.net/projects/unix-utils/files/socat/1.7.3.2/socat-1.7.3.2-1-x86_64.zip/download)
+
 ## Reverse shell relay
 
 This way we can relay reverse shells for multiple hops
