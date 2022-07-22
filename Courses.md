@@ -17,6 +17,7 @@
 - @0verfl0w_ - [The Beginner Malware Analysis Course](https://www.0ffset.net/training/beginner-malanalysis/) (~45€)
 - @0verfl0w_ - [Zero2Automated](https://courses.zero2auto.com/adv-malware-analysis-course) (~175€)
 - SANS - [FOR610](https://www.sans.org/cyber-security-courses/reverse-engineering-malware-malware-analysis-tools-techniques/) (~7500€ ...no that's not a typo)
+- SANS - [FOR710](https://www.sans.org/cyber-security-courses/reverse-engineering-malware-advanced-code-analysis/) (~7500€ ...no that's also not a typo)
 
 # Red Teaming Courses + Labs
 - Zero Point Security - [Red Team Ops](https://training.zeropointsecurity.co.uk/courses/red-team-ops) (~470€)
