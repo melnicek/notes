@@ -17,26 +17,26 @@
 # Pentesting Labs
 | Price (eur) | Machines | Organization | Mame | Link |
 | --- | --- | --- | --- | --- |
-| 0 | 2 | eLearnSecurity | Black-box Penetration Test 1 | [link](://my.ine.com/CyberSecurity/courses/6f986ca5/penetration-testing-basics/lab/a8e27b29-5c64-43c3-9643-41026ecc895a) |
-| 0 | 2 | eLearnSecurity | Black-box Penetration Test 2 | [link](://my.ine.com/CyberSecurity/courses/6f986ca5/penetration-testing-basics/lab/6f6dd176-54f6-442f-968a-ada7454ff9fa) |
-| 10/month | 2 | Hack the Box | P.O.O. | [link](://app.hackthebox.com/endgames/poo) |
-| 0 | 3 | eLearnSecurity | Black-box Penetration Test 3 | [link](://my.ine.com/CyberSecurity/courses/6f986ca5/penetration-testing-basics/lab/077b45bc-9eaa-4c2e-bcb3-a949a89b95fa) |
-| 0 | 3 | TryHackMe | Wreath | [link](://tryhackme.com/room/wreath) |
-| 10/month | 3 | Hack the Box | Hades | [link](://app.hackthebox.com/endgames/hades) |
-| 10/month | 4 | Hack the Box | RPG | [link](://app.hackthebox.com/endgames/rpg) |
-| 10/month | 6 | Hack the Box | Xen | [link](://app.hackthebox.com/endgames/xen) |
-| 10/month | 6 | TryHackMe | Holo | [link](://tryhackme.com/room/hololive) |
-| 60/month | 11 | TryHackMe | Throwback | [link](://tryhackme.com/network/throwback) |
-| 80+20/month | 14 | Hack the Box | Dante | [link](://app.hackthebox.com/prolabs/overview/dante) |
-| 80+20/month | 15 | Hack the Box | RastaLabs | [link](://app.hackthebox.com/prolabs/overview/rastalabs) |
-| 80+20/month | 18 | Hack the Box | APTLabs | [link](://app.hackthebox.com/prolabs/overview/aptlabs) |
-| 80+20/month | 21 | Hack the Box | Offshore | [link](://app.hackthebox.com/prolabs/overview/offshore) |
-| 80+20/month | 28 | Hack the Box | Cybernetics | [link](://app.hackthebox.com/prolabs/overview/cybernetics) |
-| 149 | ? | Pentester Academy | Attacking Active Directory with Linux Lab | [link](://www.pentesteracademy.com/linuxad) |
-| 250 | ? | Pentester Academy | Attacking and Defending Active Directory Lab | [link](://www.pentesteracademy.com/activedirectorylab) |
-| 299 | ? | Pentester Academy | Red Team Lab | [link](://www.pentesteracademy.com/redteamlab) |
-| 339 | ? | Pentester Academy | Global Central Bank: An Enterprise Cyber Range | [link](://www.pentesteracademy.com/gcb) |
-| 470 | ? | Zero Point Security | Red Team Ops | [link](://training.zeropointsecurity.co.uk/courses/red-team-ops) |
+| 0 | 2 | eLearnSecurity | Black-box Penetration Test 1 | [link](https://my.ine.com/CyberSecurity/courses/6f986ca5/penetration-testing-basics/lab/a8e27b29-5c64-43c3-9643-41026ecc895a) |
+| 0 | 2 | eLearnSecurity | Black-box Penetration Test 2 | [link](https://my.ine.com/CyberSecurity/courses/6f986ca5/penetration-testing-basics/lab/6f6dd176-54f6-442f-968a-ada7454ff9fa) |
+| 10/month | 2 | Hack the Box | P.O.O. | [link](https://app.hackthebox.com/endgames/poo) |
+| 0 | 3 | eLearnSecurity | Black-box Penetration Test 3 | [link](https://my.ine.com/CyberSecurity/courses/6f986ca5/penetration-testing-basics/lab/077b45bc-9eaa-4c2e-bcb3-a949a89b95fa) |
+| 0 | 3 | TryHackMe | Wreath | [link](https://tryhackme.com/room/wreath) |
+| 10/month | 3 | Hack the Box | Hades | [link](https://app.hackthebox.com/endgames/hades) |
+| 10/month | 4 | Hack the Box | RPG | [link](https://app.hackthebox.com/endgames/rpg) |
+| 10/month | 6 | Hack the Box | Xen | [link](https://app.hackthebox.com/endgames/xen) |
+| 10/month | 6 | TryHackMe | Holo | [link](https://tryhackme.com/room/hololive) |
+| 60/month | 11 | TryHackMe | Throwback | [link](https://tryhackme.com/network/throwback) |
+| 80+20/month | 14 | Hack the Box | Dante | [link](https://app.hackthebox.com/prolabs/overview/dante) |
+| 80+20/month | 15 | Hack the Box | RastaLabs | [link](https://app.hackthebox.com/prolabs/overview/rastalabs) |
+| 80+20/month | 18 | Hack the Box | APTLabs | [link](https://app.hackthebox.com/prolabs/overview/aptlabs) |
+| 80+20/month | 21 | Hack the Box | Offshore | [link](https://app.hackthebox.com/prolabs/overview/offshore) |
+| 80+20/month | 28 | Hack the Box | Cybernetics | [link](https://app.hackthebox.com/prolabs/overview/cybernetics) |
+| 149 | ? | Pentester Academy | Attacking Active Directory with Linux Lab | [link](https://www.pentesteracademy.com/linuxad) |
+| 250 | ? | Pentester Academy | Attacking and Defending Active Directory Lab | [link](https://www.pentesteracademy.com/activedirectorylab) |
+| 299 | ? | Pentester Academy | Red Team Lab | [link](https://www.pentesteracademy.com/redteamlab) |
+| 339 | ? | Pentester Academy | Global Central Bank: An Enterprise Cyber Range | [link](https://www.pentesteracademy.com/gcb) |
+| 470 | ? | Zero Point Security | Red Team Ops | [link](https://training.zeropointsecurity.co.uk/courses/red-team-ops) |
 
 # Courses
 ## Malware Development
