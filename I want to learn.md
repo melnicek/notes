@@ -10,16 +10,28 @@
 - https://alf.nu/alert1
 
 ## ... penetration testing:
-- https://app.hackthebox.com/machines/list/active?sort_by=user-difficulty&sort_type=asc
+- https://app.hackthebox.com/machines/list/active
+- https://www.youtube.com/c/ippsec
 - https://portal.offensive-security.com/labs/play
-
-## ... binary exploitation:
-- https://pwn.college/
-- https://guyinatuxedo.github.io/index.html
 
 ## ... digital forensic:
 - https://cyberdefenders.org/blueteam-ctf-challenges/
 - https://blueteamlabs.online/home/challenges
+- https://www.youtube.com/c/13cubed
+
+## ... malware analysis:
+- https://www.youtube.com/playlist?list=PLiFO-R_BI-kAqDPqtnOq2n70mtAZ6xg5N
+- https://www.youtube.com/c/OALabs
+- https://www.youtube.com/c/MalwareAnalysisForHedgehogs
+
+## ... game hacking:
+- https://www.youtube.com/c/GuidedHacking
+- https://www.youtube.com/c/NullTerminator
+
+## ... binary exploitation:
+- https://pwn.college/
+- https://guyinatuxedo.github.io/index.html
+- https://www.youtube.com/channel/UCksdNO8hAiOQoWZhEXhyyZA
 
 ## ... cryptography:
 - https://cryptohack.org/challenges/
