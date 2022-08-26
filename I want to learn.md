@@ -27,6 +27,7 @@
 ## ... malware development:
 - https://shogunlab.gitbook.io/building-c2-implants-in-cpp-a-primer/
 - https://www.youtube.com/watch?v=TfG9lBYCOq8
+- https://www.vx-underground.org/windows.html
 
 ## ... game hacking:
 - https://www.youtube.com/c/GuidedHacking
