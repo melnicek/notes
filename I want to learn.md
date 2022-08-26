@@ -24,6 +24,10 @@
 - https://www.youtube.com/c/OALabs
 - https://www.youtube.com/c/MalwareAnalysisForHedgehogs
 
+## ... malware development:
+- https://shogunlab.gitbook.io/building-c2-implants-in-cpp-a-primer/
+- https://www.youtube.com/watch?v=TfG9lBYCOq8
+
 ## ... game hacking:
 - https://www.youtube.com/c/GuidedHacking
 - https://www.youtube.com/c/NullTerminator
