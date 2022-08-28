@@ -21,6 +21,7 @@
 
 ## ... malware analysis:
 - https://www.youtube.com/playlist?list=PLiFO-R_BI-kAqDPqtnOq2n70mtAZ6xg5N
+- https://forum.tuts4you.com/files/categories/
 - https://www.youtube.com/c/OALabs
 - https://www.youtube.com/c/MalwareAnalysisForHedgehogs
 
