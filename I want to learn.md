@@ -7,6 +7,7 @@
 
 ## ... web security:
 - https://portswigger.net/web-security/learning-path
+- https://www.hacksplaining.com/lessons
 - https://alf.nu/alert1
 
 ## ... penetration testing:
