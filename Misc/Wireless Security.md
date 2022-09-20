@@ -5,9 +5,7 @@ https://github.com/D3Ext/WEF
 # Wifite
 sudo wifite -mac --skip-crack --clients-only -wpa --no-wps --no-pmkid
 
-https://hashcat.net/wiki/doku.php?id=cracking_wpawpa2
-
-https://hashcat.net/cap2hccapx
+https://hashcat.net/cap2hashcat/
 
 hashcat.exe -m 22000 HASHFILE -a 3 ?d?d?d?d?d?d?d?d?d
 
