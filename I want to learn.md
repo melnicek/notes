@@ -15,9 +15,10 @@
 - https://www.youtube.com/c/ippsec
 - https://portal.offensive-security.com/labs/play
 
-## ... digital forensic:
+## ... digital forensic & incident response:
 - https://cyberdefenders.org/blueteam-ctf-challenges/
 - https://blueteamlabs.online/home/challenges
+- https://letsdefend.io/
 - https://www.youtube.com/c/13cubed
 
 ## ... malware analysis:
